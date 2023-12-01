@@ -11,6 +11,7 @@
     <%= f.input :email %>
     <%= f.input :password, required: true, hint: "#{@minimum_password_length} characters minimum" %>
     <%= f.input :password_confirmation, required: true %>
+    <%= f.input :accepted_terms_at, as: :boolean, label: false, inline_label: "I accept the #{link_to('terms of service', 'terms_path', target: '_blank', rel: 'noopener')} and #{link_to('privacy policy', 'privacy_path', target: '_blank', rel: 'noopener')}".html_safe %>
 
     <%= f.button :submit, "Sign up", class: 'btn bg-blue-600 text-white my-2' %>
   <% end %>
