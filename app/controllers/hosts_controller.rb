@@ -4,10 +4,11 @@ class HostsController < ApplicationController
 
   def home
     @host = current_user.host
-    @events = @host.events.order(:date)
+    @events = @host.events.order(:date) if @host
   end
 
   def show
+    @events = @host.events.where('date > ?', Date.today).order(:date)
   end
 
   def new

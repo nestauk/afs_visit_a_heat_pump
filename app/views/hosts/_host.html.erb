@@ -1,44 +1,31 @@
-<div id="<%= dom_id host %>">
-  <%= image_tag host.profile_picture %>
+<h1><%= host.user.first_name.pluralize %> show home</h1>
 
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Street address:</strong>
-    <%= host.street_address %>
-  </p>
-
-  <p class="my-5">
-    <strong class="block font-medium mb-1">City:</strong>
-    <%= host.city %>
-  </p>
-
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Postcode:</strong>
-    <%= host.postcode %>
-  </p>
-
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Lat:</strong>
-    <%= host.lat %>
-  </p>
-
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Lng:</strong>
-    <%= host.lng %>
-  </p>
-
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Property type:</strong>
+<section class="flex gap-8 mb-6">
+  <div class="w-1/2">
+    <%= image_tag host.profile_picture %>
+  </div>
+  <div class="w-1/2">
     <%= host.property_type %>
-  </p>
-
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Hp type:</strong>
+    &middot;
     <%= host.hp_type %>
-  </p>
+  </div>
+</section>
 
-  <% if action_name != "show" %>
-    <%= link_to "Show this host", host, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-    <%= link_to 'Edit this host', edit_host_path(host), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
-    <hr class="mt-6">
+<section>
+  <h2>Upcoming events</h2>
+
+  <%- @events.each do |e| %>
+    <div class="flex items-center py-3 border-t border-gray-300">
+      <div class="w-1/3">
+        <%= e.date.strftime("%d %b %G") %>
+      </div>
+      <div class="w-1/3">
+        <%= e.start_at.strftime("%H:%M") %> - <%= e.end_at.strftime("%H:%M") %>
+      </div>
+      <div class="w-1/3">
+        <%= e.bookings.count %> of <%= e.capacity %> bookings
+      </div>
+      <%= link_to 'Book a visit', new_host_event_booking_path(@host, e), class: 'btn bg-blue-600 text-white shrink-0' %>
+    </div>
   <% end %>
-</div>
+</section>
