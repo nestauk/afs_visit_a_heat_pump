@@ -3,11 +3,6 @@
 @tailwind utilities;
 
 @layer components {
-  /* TODO: refactor */
-  a {
-    @apply underline hover:no-underline;
-  }
-
   /* Button */
   /* ======================================================================== */
 
@@ -16,6 +11,13 @@
   }
   .btn:hover {
     @apply bg-opacity-75;
+  }
+
+  /* Link */
+  /* ======================================================================== */
+
+  .link {
+    @apply underline hover:no-underline cursor-pointer;
   }
 
   /* Form */

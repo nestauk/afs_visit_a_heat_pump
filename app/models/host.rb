@@ -7,6 +7,8 @@ class Host < ApplicationRecord
   has_one :user
   has_one_attached :profile_picture
 
+  has_many :events
+
   validates :street_address, :city, :postcode, :property_type, :hp_type,
             :profile_picture, presence: true
 end

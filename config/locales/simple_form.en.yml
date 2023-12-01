@@ -13,6 +13,11 @@ en:
     labels:
       host:
         hp_type: "Type of heat pump"
+      event:
+        date: "Date of event"
+        start_at: "Start time of event"
+        end_at: "End time of event"
+        capacity: "Maximum number of bookings"
     # Examples
     # labels:
     #   defaults:

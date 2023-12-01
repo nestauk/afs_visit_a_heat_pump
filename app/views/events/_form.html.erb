@@ -1,0 +1,8 @@
+<%= simple_form_for [host, event] do |f| %>
+  <%= f.input :date, html5: true %>
+  <%= f.input :start_at %>
+  <%= f.input :end_at %>
+  <%= f.input :capacity %>
+
+  <%= f.button :submit, 'Save', class: 'btn bg-blue-600 text-white' %>
+<% end %>

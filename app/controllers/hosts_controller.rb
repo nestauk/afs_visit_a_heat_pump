@@ -4,6 +4,7 @@ class HostsController < ApplicationController
 
   def home
     @host = current_user.host
+    @events = @host.events.order(:date)
   end
 
   def show
