@@ -79,4 +79,5 @@ end
 
 gem "devise", "~> 4.9"
 gem "geokit-rails", "~> 2.5"
+gem "mapkick-rb", "~> 0.1.5"
 gem "simple_form", "~> 5.3"

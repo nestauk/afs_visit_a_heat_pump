@@ -14,18 +14,21 @@
 
   <body class="flex flex-col h-screen">
     <header class="bg-blue-600 text-white">
-      <nav class="container mx-auto my-3 px-4 font-bold flex justify-between">
-        <strong>Logo</strong>
-        <div>
-          Visit
-          &middot;
-          <%= link_to 'Host', root_path, class: 'link' %>
+      <nav class="container mx-auto my-3 px-4 flex items-center justify-between">
+        <%= link_to root_path, class: 'my-1 flex items-center' do %>
+          <%= image_tag 'logo', width: 43 %>
+          <span class="ml-4 font-extrabold text-lg">Visit a heat pump</span>
+        <% end %>
+        <div class="font-semibold">
+          <%= link_to 'Visit', root_path, class: controller_name == 'visitors' ? 'underline' : 'hover:underline' %>
+          <span class="mx-2">&middot;</span>
+          <%= link_to 'Host', host_home_path, class: controller_name == 'hosts' ? 'underline' : 'hover:underline' %>
           <%- if user_signed_in? %>
-            &middot;
-            <%= link_to 'Sign out', destroy_user_session_path, data: { turbo_method: :delete }, class: 'link' %>
+            <span class="mx-2">&middot;</span>
+            <%= link_to 'Sign out', destroy_user_session_path, data: { turbo_method: :delete }, class: 'hover:underline' %>
           <% else %>
-            &middot;
-            <%= link_to 'Sign in', new_user_session_path, class: 'link' %>
+            <span class="mx-2">&middot;</span>
+            <%= link_to 'Sign in', new_user_session_path, class: 'hover:underline' %>
           <% end %>
         </div>
       </nav>

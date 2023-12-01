@@ -24,7 +24,7 @@ class HostsController < ApplicationController
     @host.user = current_user
 
     if @host.save
-      redirect_to root_path, notice: "Host profile created."
+      redirect_to host_home_path, notice: "Host profile created."
     else
       render :new, status: :unprocessable_entity
     end

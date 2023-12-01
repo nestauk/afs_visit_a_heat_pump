@@ -1,0 +1,30 @@
+<div class="max-w-screen-md mx-auto">
+  <h1>Visit a heat pump near <%= params[:postcode]&.upcase || 'you' %></h1>
+
+  <%= js_map @hosts %>
+
+  <section class="mt-8">
+    <%- @hosts.each do |h| %>
+      <div class="flex items-center py-3 border-t border-gray-400">
+        <div class="w-1/3">
+          <strong><%= h.user.first_name.pluralize %> show home</strong>
+          <p class="text-sm"><%= h.upcoming_events.count %> upcoming events</p>
+        </div>
+        <div class="w-1/3">
+          <%= h.city %>
+          <%- if params[:postcode] %>
+            <p class="text-sm">
+              <%# TODO: cache %>
+              <%= h.distance_from(params[:postcode]).round(1) %> miles away
+            </p>
+          <% end %>
+        </div>
+        <div class="w-1/3">
+          <%= h.property_type %>
+          <p class="text-sm"><%= h.hp_type %></p>
+        </div>
+        <%= link_to 'View property', h, class: 'btn bg-blue-600 text-white shrink-0' %>
+      </div>
+    <% end %>
+  </section>
+</div>

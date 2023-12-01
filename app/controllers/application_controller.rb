@@ -6,4 +6,12 @@ class ApplicationController < ActionController::Base
       :first_name, :last_name, :accepted_terms_at
     ])
   end
+
+  def after_sign_up_path_for(user)
+    host_home_path
+  end
+
+  def after_sign_in_path_for(user)
+    host_home_path
+  end
 end

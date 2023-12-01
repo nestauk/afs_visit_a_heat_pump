@@ -11,4 +11,8 @@ class Host < ApplicationRecord
 
   validates :street_address, :city, :postcode, :property_type, :hp_type,
             :profile_picture, presence: true
+
+  def upcoming_events
+    events.where('date > ?', Date.today)
+  end
 end
