@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>AfsVisitAHeatPump</title>
+    <title>Visit a heat pump</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -9,11 +9,40 @@
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
+    <%= hotwire_livereload_tags if Rails.env.development? %>
   </head>
 
-  <body>
-    <main class="container mx-auto mt-28 px-5 flex">
+  <body class="flex flex-col h-screen">
+    <header class="bg-blue-600 text-white">
+      <nav class="container mx-auto my-3 px-4 font-bold flex justify-between">
+        <strong>Logo</strong>
+        <div>
+          Visit
+          &middot;
+          <%= link_to 'Host', root_path, class: 'link' %>
+          <%- if user_signed_in? %>
+            &middot;
+            <%= link_to 'Sign out', destroy_user_session_path, data: { turbo_method: :delete }, class: 'link' %>
+          <% else %>
+            &middot;
+            <%= link_to 'Sign in', new_user_session_path, class: 'link' %>
+          <% end %>
+        </div>
+      </nav>
+
+    </header>
+
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
+
+    <main class="container mx-auto flex-1 p-4">
       <%= yield %>
     </main>
+
+    <footer class="bg-gray-500 text-white">
+      <div class="container mx-auto my-3 px-4">
+        Footer
+      </div>
+    </footer>
   </body>
 </html>
