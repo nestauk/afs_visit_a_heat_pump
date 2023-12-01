@@ -77,6 +77,7 @@ group :test do
   gem "selenium-webdriver"
 end
 
+gem "cloudinary", "~> 1.28"
 gem "devise", "~> 4.9"
 gem "geokit-rails", "~> 2.5"
 gem "mapkick-rb", "~> 0.1.5"
