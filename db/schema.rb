@@ -20,8 +20,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_29_180646) do
     t.string "postcode"
     t.float "lat"
     t.float "lng"
-    t.integer "property_type"
-    t.integer "hp_type"
+    t.string "property_type"
+    t.string "hp_type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

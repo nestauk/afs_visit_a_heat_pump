@@ -6,8 +6,8 @@ class CreateHosts < ActiveRecord::Migration[7.0]
       t.string :postcode
       t.float :lat
       t.float :lng
-      t.integer :property_type
-      t.integer :hp_type
+      t.string :property_type
+      t.string :hp_type
 
       t.timestamps
     end
