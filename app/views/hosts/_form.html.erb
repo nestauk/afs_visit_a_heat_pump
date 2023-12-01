@@ -5,6 +5,7 @@
   <%= f.input :postcode %>
 
   <strong>Public info</strong>
+  <%= f.input :profile_picture, as: :file, accept: 'image/png,image/jpeg' %>
   <%= f.input :property_type, as: :select, collection: Host::PROPERTY_TYPES %>
   <%= f.input :hp_type, as: :select, collection: Host::HP_TYPES %>
 

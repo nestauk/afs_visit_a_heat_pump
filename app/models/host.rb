@@ -5,7 +5,8 @@ class Host < ApplicationRecord
   acts_as_mappable auto_geocode: { field: :postcode }
 
   has_one :user
+  has_one_attached :profile_picture
 
   validates :street_address, :city, :postcode, :property_type, :hp_type,
-            presence: true
+            :profile_picture, presence: true
 end
