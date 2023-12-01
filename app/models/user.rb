@@ -6,5 +6,5 @@ class User < ApplicationRecord
 
   belongs_to :host, optional: true
 
-  validates :first_name, :last_name, presence: true
+  validates :email, :first_name, :last_name, presence: true
 end
