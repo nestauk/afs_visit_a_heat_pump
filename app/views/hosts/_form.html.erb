@@ -1,17 +1,35 @@
 <%= simple_form_for host do |f| %>
-  <strong>Private info</strong>
-  <%= f.input :street_address %>
-  <%= f.input :city %>
-  <%= f.input :postcode %>
+  <section class="py-6 border-t border-indigo-600">
+    <h2 class="text-3xl text-indigo-600">About your home</h2>
 
-  <strong>Public info</strong>
-  <%= f.input :profile_picture, as: :file, input_html: { accept: 'image/*' } %>
-  <% if host.profile_picture.attached? %>
-    <em class="text-sm"><%= host.profile_picture.blob.filename %></em>
-    <%= image_tag host.profile_picture, width: 250 %>
-  <% end %>
-  <%= f.input :property_type, as: :select, collection: Host::PROPERTY_TYPES %>
-  <%= f.input :hp_type, as: :select, collection: Host::HP_TYPES %>
+    <p class="my-5 italic">To create an event with our service, we will need to collect your address details. This information will only be shared with registered visitors and won't be published online at any point.</p>
 
-  <%= f.button :submit, class: 'btn bg-blue-600 text-white' %>
+    <%= f.input :street_address %>
+    <div class="flex gap-2">
+      <%= f.input :city, wrapper_html: { class: 'grow' } %>
+      <%= f.input :postcode, wrapper_html: { class: 'grow' } %>
+    </div>
+    <%= f.input :property_type, as: :select, collection: Host::PROPERTY_TYPES %>
+    <%= f.input :no_of_bedrooms, input_html: { min: 1 } %>
+    <%= f.input :useful_info %>
+    <%= f.input :upcoming_dates %>
+
+    <%= f.input :profile_picture, as: :file, input_html: { accept: 'image/*', class: 'mt-2' } %>
+    <% if host.profile_picture.attached? && host.profile_picture.persisted?%>
+      <div class="mb-4">
+        <em class="text-sm"><%= host.profile_picture.blob.filename %></em>
+        <%= image_tag host.profile_picture, width: 250 %>
+      </div>
+    <% end %>
+  </section>
+
+  <section class="py-6 border-t border-indigo-600">
+    <h2 class="text-3xl text-indigo-600">About your heat pump</h2>
+    <%= f.input :hp_type, as: :select, collection: Host::HP_TYPES %>
+    <%= f.input :hp_manufacturer %>
+    <%= f.input :hp_size, input_html: { min: 1 } %>
+    <%= f.input :hp_year_of_install, collection:  Date.today.year.downto(2000) %>
+  </section>
+
+  <%= f.button :submit, 'Save', class: 'btn bg-indigo-600 text-white w-full', data: { turbo_submits_with: 'Saving...' } %>
 <% end %>

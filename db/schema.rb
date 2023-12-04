@@ -72,7 +72,13 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_01_115220) do
     t.float "lat"
     t.float "lng"
     t.string "property_type"
+    t.integer "no_of_bedrooms"
+    t.text "useful_info"
+    t.text "upcoming_dates"
     t.string "hp_type"
+    t.string "hp_manufacturer"
+    t.integer "hp_size"
+    t.integer "hp_year_of_install"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

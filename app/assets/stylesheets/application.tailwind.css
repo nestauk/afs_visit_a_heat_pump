@@ -28,11 +28,11 @@
   }
 
   .hint {
-    @apply text-sm mb-0.5 text-gray-700;
+    @apply text-sm mb-0.5 text-gray-600;
   }
 
   .input_wrapper {
-    @apply mb-2;
+    @apply mb-4;
   }
 
   .input.string,
@@ -44,7 +44,7 @@
   .input.text,
   .trix-editor,
   .field input {
-    @apply block shadow rounded border border-gray-300 outline-none px-3 py-2 w-full;
+    @apply block shadow rounded border-2 border-gray-400 outline-none px-3 py-2 w-full;
   }
 
   .field_with_errors .error {

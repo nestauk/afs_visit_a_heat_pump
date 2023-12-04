@@ -7,7 +7,13 @@ class CreateHosts < ActiveRecord::Migration[7.0]
       t.float :lat
       t.float :lng
       t.string :property_type
+      t.integer :no_of_bedrooms
+      t.text :useful_info
+      t.text :upcoming_dates
       t.string :hp_type
+      t.string :hp_manufacturer
+      t.integer :hp_size
+      t.integer :hp_year_of_install
 
       t.timestamps
     end

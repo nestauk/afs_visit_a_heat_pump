@@ -1,7 +1,7 @@
 class Event < ApplicationRecord
   belongs_to :host
 
-  has_many :bookings
+  has_many :bookings, dependent: :destroy
 
   validates :date, :start_at, :end_at, :capacity, presence: true
 

@@ -12,12 +12,21 @@ en:
       default_message: "Please review the problems below:"
     labels:
       host:
-        hp_type: "Type of heat pump"
+        no_of_bedrooms: "Number of bedrooms"
+        useful_info: "Is there anything that would be useful for visitors to your home to know e.g. accessibility, parking? You can update this at any time"
+        upcoming_dates: "Are there specific dates and/or times when you would be available to host visitors in the near future?"
+        hp_type: "Heat pump type"
+        hp_manufacturer: "Manufacturer"
+        hp_size: "Heat pump size in kW (optional)"
+        hp_year_of_install: "Year of installation"
       event:
         date: "Date of event"
         start_at: "Start time of event"
         end_at: "End time of event"
         capacity: "Maximum number of bookings"
+    hints:
+      host:
+        profile_picture: "Improve your profile by adding a photo."
     # Examples
     # labels:
     #   defaults:

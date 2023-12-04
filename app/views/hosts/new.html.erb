@@ -1,7 +1,8 @@
-<div class="mx-auto md:w-2/3 w-full">
-  <h1 class="font-bold text-4xl">Complete profile</h1>
+<div class="mx-auto my-10 max-w-prose">
+  <%= link_to "‹ Back", host_home_path, class: "link text-gray-700" %>
+  <h1 class="font-bold text-5xl text-indigo-600 mt-3">Start hosting</h1>
+
+  <p class="mt-6 mb-10 text-lg">Register an account below to get started hosting heat pump visits. Once you're registered we'll guide you though setting up and running visits, as well as connecting you to interested visitors in your area.</p>
 
   <%= render "form", host: @host %>
-
-  <%= link_to 'Back', host_home_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
 </div>

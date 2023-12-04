@@ -4,5 +4,5 @@
   <%= f.input :end_at %>
   <%= f.input :capacity %>
 
-  <%= f.button :submit, 'Save', class: 'btn bg-blue-600 text-white' %>
+  <%= f.button :submit, 'Save', class: 'btn bg-indigo-600 text-white', data: { turbo_submits_with: 'Saving...' } %>
 <% end %>
