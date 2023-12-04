@@ -1,87 +1,83 @@
-<h1 class="font-bold text-4xl mb-3">Welcome <%= current_user.first_name %></h1>
+<div class="flex flex-wrap gap-8 mt-6">
+  <section class="w-full lg:w-1/3 ">
+    <div class="p-6 text-white bg-indigo-600">
+      <h1>Welcome <%= current_user.first_name %></h1>
 
-<div class="flex gap-8">
-  <section class="w-1/3">
-    <h2>Getting started</h2>
-
-    <%- if @host %>
-      <div class="flex mb-2">
-        <svg width="24px" height="24px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" color="#000000" stroke-width="1.5"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 1.25C6.06294 1.25 1.25 6.06294 1.25 12C1.25 17.9371 6.06294 22.75 12 22.75C17.9371 22.75 22.75 17.9371 22.75 12C22.75 6.06294 17.9371 1.25 12 1.25ZM7.53044 11.9697C7.23755 11.6768 6.76268 11.6768 6.46978 11.9697C6.17689 12.2626 6.17689 12.7374 6.46978 13.0303L9.46978 16.0303C9.76268 16.3232 10.2376 16.3232 10.5304 16.0303L17.5304 9.03033C17.8233 8.73744 17.8233 8.26256 17.5304 7.96967C17.2375 7.67678 16.7627 7.67678 16.4698 7.96967L10.0001 14.4393L7.53044 11.9697Z" fill="#000000"></path></svg>
-        <p class="ml-2"><strong>Step 1:</strong> Complete profile (<%= link_to 'Edit', edit_host_path(@host), class: 'link' %> &middot; <%= link_to 'View public profile', @host, class: 'link' %>)</p>
-      </div>
-      <%- if @events %>
-        <div class="flex mb-2">
-          <svg width="24px" height="24px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" color="#000000" stroke-width="1.5"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 1.25C6.06294 1.25 1.25 6.06294 1.25 12C1.25 17.9371 6.06294 22.75 12 22.75C17.9371 22.75 22.75 17.9371 22.75 12C22.75 6.06294 17.9371 1.25 12 1.25ZM7.53044 11.9697C7.23755 11.6768 6.76268 11.6768 6.46978 11.9697C6.17689 12.2626 6.17689 12.7374 6.46978 13.0303L9.46978 16.0303C9.76268 16.3232 10.2376 16.3232 10.5304 16.0303L17.5304 9.03033C17.8233 8.73744 17.8233 8.26256 17.5304 7.96967C17.2375 7.67678 16.7627 7.67678 16.4698 7.96967L10.0001 14.4393L7.53044 11.9697Z" fill="#000000"></path></svg>
-          <p class="ml-2"><strong>Step 2:</strong> Add an event</p>
-        </div>
+      <%- if @host %>
+        <%= link_to 'View public profile', @host, class: 'btn bg-white text-indigo-600 w-full mb-4' %>
+        <%= link_to 'Edit profile', edit_host_path(@host), class: 'btn bg-white text-indigo-600 w-full' %>
       <% else %>
-        <div class="flex">
-          <svg width="24px" height="24px" stroke-width="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" color="#000000"><path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
-          <p class="ml-2"><strong>Step 2:</strong> <%= link_to 'Add an event', new_host_event_path(@host), class: 'link' %></p>
-        </div>
+        <p class="text-lg">
+          <%= link_to 'Complete your profile', new_host_path, class: 'link' %>
+          to get started.
+        </p>
       <% end %>
-    <% else %>
-      <div class="flex mb-2">
-        <svg width="24px" height="24px" stroke-width="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" color="#000000"><path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
-        <p class="ml-2"><strong>Step 1:</strong> <%= link_to 'Complete profile', new_host_path, class: 'link' %></p>
-      </div>
-      <div class="flex">
-        <svg width="24px" height="24px" stroke-width="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" color="#000000"><path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
-        <p class="ml-2"><strong>Step 2:</strong> Add an event</p>
-      </div>
-    <% end %>
-    <div class="flex mb-2">
-      <svg width="24px" height="24px" stroke-width="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" color="#000000"><path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
-      <p class="ml-2"><strong>Step 3:</strong> Host an event</p>
     </div>
   </section>
 
-  <section class="w-2/3">
+  <section class="grow">
     <div class="flex justify-between items-baseline mb-2">
-      <h2>Events</h2>
+      <h2>My events</h2>
       <%- if @host %>
         <%= link_to 'Add event', new_host_event_path(@host), class: 'btn bg-indigo-600 text-white' %>
       <% end %>
     </div>
 
+    <div class="my-4">
+      <strong>Upcoming events</strong>
+      <span class="mx-2">&middot;</span>
+      <span class="link">Past events</span>
+      <span class="mx-2">&middot;</span>
+      <span class="link">Cancelled events</span>
+    </div>
+
     <%- if @host %>
-      <div class="mb-3">
-        <strong>Upcoming events</strong>
-        <span class="mx-2">&middot;</span>
-        <span class="link">Past events</span>
-        <span class="mx-2">&middot;</span>
-        <span class="link">Cancelled events</span>
-      </div>
+
+      <% if @events.any? %>
+      <% else %>
+        <div class="flex flex-col items-center justify-center h-64">
+          <%= image_tag 'calendar-icon.svg', width: 150, height: 150 %>
+          <div class="text-gray-600">No events, try add one.</div>
+        </div>
+      <% end %>
 
       <%- @events.each do |e| %>
-        <div class="flex py-3 border-t border-gray-300">
-          <div class="w-1/3">
-            <%= e.date.strftime("%d %b %G") %>
-          </div>
-          <div class="w-1/3">
-            <%= e.start_at.strftime("%H:%M") %> - <%= e.end_at.strftime("%H:%M") %>
-          </div>
-          <div class="w-1/3">
-            <%= e.bookings.count %> of <%= e.capacity %> bookings
-          </div>
-          <%= link_to 'Edit', edit_host_event_path(@host, e), class: 'link' %>
-        </div>
-
-        <% if e.bookings.any? %>
-          <details class="mb-3">
-            <summary class="text-sm mb-2"><span class="link">View bookings</span></summary>
-            <div>
-              <%- e.bookings.each do |b| %>
-                <p class="mb-2">
-                  <strong><%= b.full_name.titleize %></strong> booked a visit for <strong><%= b.quantity %></strong> people at <%= b.updated_at.strftime("%H:%M on %d %b %G") %>.
-                </p>
-              <% end %>
+        <div class="border-2 border-indigo-600 mb-6">
+          <div class="bg-indigo-600 text-white p-4">
+            <div class="flex justify-between items-start">
+              <h2><%= e.date.strftime("%A %d %b %G") %></h2>
+              <%= link_to 'Edit', edit_host_event_path(@host, e), class: 'btn-sm bg-white text-indigo-600' %>
             </div>
-          </details>
-        <% end %>
+
+            <p class="flex items-center">
+              <%= e.start_at.strftime("%H:%M") %> - <%= e.end_at.strftime("%H:%M") %>
+              <span class="mx-2">&middot;</span>
+              <%= image_tag 'ticket-icon-white.svg', width: 24, height: 24 %>
+              <strong><%= e.bookings.count %></strong>&nbsp;of&nbsp;<strong><%= e.capacity %></strong>&nbsp;bookings
+            </p>
+          </div>
+
+          <% if e.bookings.any? %>
+            <details>
+              <summary class="px-4 py-3 text-sm link no-underline hover:bg-indigo-100">
+                View bookings
+              </summary>
+              <div>
+                <%- e.bookings.each do |b| %>
+                  <p class="px-4 py-3 border-t border-gray-400">
+                    <strong><%= b.full_name.titleize %></strong> booked a visit for <strong><%= b.quantity %></strong> people at <%= b.updated_at.strftime("%H:%M on %d %b %G") %>.
+                  </p>
+                <% end %>
+              </div>
+            </details>
+          <% end %>
+        </div>
       <% end %>
     <% else %>
-      <p>Complete your profile to add events.</p>
+      <div class="flex flex-col items-center justify-center h-64">
+        <%= image_tag 'calendar-icon.svg', width: 150, height: 150 %>
+        <div class="text-gray-600">Complete your profile to add events.</div>
+      </div>
     <% end %>
   </section>
 </div>

@@ -1,7 +1,9 @@
 <%= simple_form_for [host, event] do |f| %>
   <%= f.input :date, html5: true %>
-  <%= f.input :start_at %>
-  <%= f.input :end_at %>
+  <div class="flex flex-wrap gap-8">
+    <%= f.input :start_at, as: :time, minute_step: 15 %>
+    <%= f.input :end_at, as: :time, minute_step: 15 %>
+  </div>
   <%= f.input :capacity %>
 
   <%= f.button :submit, 'Save', class: 'btn bg-indigo-600 text-white', data: { turbo_submits_with: 'Saving...' } %>

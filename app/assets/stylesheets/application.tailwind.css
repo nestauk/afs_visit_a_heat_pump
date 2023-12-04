@@ -6,11 +6,22 @@
   /* Button */
   /* ======================================================================== */
 
-  .btn {
-    @apply inline-flex font-semibold rounded shadow px-4 py-2 transition-all duration-200 cursor-pointer;
+  .btn,
+  .btn-sm {
+    @apply inline-flex font-semibold rounded shadow transition-all duration-200 cursor-pointer;
   }
-  .btn:hover {
+
+  .btn:hover,
+  .btn-sm:hover {
     @apply bg-opacity-75;
+  }
+
+  .btn {
+    @apply px-4 py-2;
+  }
+
+  .btn-sm {
+    @apply px-2 py-1 text-sm;
   }
 
   /* Link */
