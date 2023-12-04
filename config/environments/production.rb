@@ -71,14 +71,14 @@ Rails.application.configure do
   config.action_mailer.smtp_settings = {
     :user_name => 'apikey',
     :password => ENV['SENDGRID_API_KEY'],
-    :domain => ENV['PRODUCTION_DOMAIN'] || 'visit-a-heat-pump-f4aa18c074be.herokuapp.com',
+    :domain => ENV['PRODUCTION_DOMAIN'] || 'herokuapp.com',
     :address => 'smtp.sendgrid.net',
     :port => 587,
     :authentication => :plain,
     :enable_starttls_auto => true
   }
 
-  config.action_mailer.default_url_options = { from: "info@visitaheatpump.com", host: ENV['PRODUCTION_DOMAIN'] || 'visit-a-heat-pump-f4aa18c074be.herokuapp.com' }
+  config.action_mailer.default_url_options = { from: 'info@visitaheatpump.com', host: ENV['PRODUCTION_DOMAIN'] || 'herokuapp.com' }
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
   # the I18n.default_locale when a translation cannot be found).
