@@ -1,8 +1,11 @@
 <%= simple_form_for host do |f| %>
   <section class="py-6 border-t border-indigo-600">
-    <h2 class="text-3xl text-indigo-600">About your home</h2>
+    <div class="flex items-start mb-2">
+      <%= image_tag 'home-icon.svg' %>
+      <h2 class="ml-3 text-3xl text-indigo-600">About your home</h2>
+    </div>
 
-    <p class="my-5 italic">To create an event with our service, we will need to collect your address details. This information will only be shared with registered visitors and won't be published online at any point.</p>
+    <p class="mb-6 italic">To create an event with our service, we will need to collect your address details. This information will only be shared with registered visitors and won't be published online at any point.</p>
 
     <%= f.input :street_address %>
     <div class="flex gap-2">
@@ -24,7 +27,10 @@
   </section>
 
   <section class="py-6 border-t border-indigo-600">
-    <h2 class="text-3xl text-indigo-600">About your heat pump</h2>
+    <div class="flex items-start mb-5">
+      <%= image_tag 'hp-icon.svg' %>
+      <h2 class="ml-3 text-3xl text-indigo-600">About your heat pump</h2>
+    </div>
     <%= f.input :hp_type, as: :select, collection: Host::HP_TYPES %>
     <%= f.input :hp_manufacturer %>
     <%= f.input :hp_size, input_html: { min: 1 } %>
