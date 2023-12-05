@@ -8,7 +8,7 @@
 
   .btn,
   .btn-sm {
-    @apply inline-flex font-semibold rounded shadow transition-all duration-200 cursor-pointer;
+    @apply inline-block text-center font-semibold rounded shadow transition-all duration-200 cursor-pointer;
   }
 
   .btn:hover,

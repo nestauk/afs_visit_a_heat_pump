@@ -20,13 +20,20 @@ en:
         hp_size: "Heat pump size in kW (optional)"
         hp_year_of_install: "Year of installation"
       event:
-        date: "Date of event"
-        start_at: "Start time of event"
-        end_at: "End time of event"
-        capacity: "Maximum number of bookings"
+        start_at: "Start time"
+        end_at: "End time"
+        capacity: "Maximum number of visitors"
+      booking:
+        quantity: "How many visitors will there be?"
     hints:
       host:
         profile_picture: "Improve your profile by adding a photo."
+      event:
+        capacity: "This is the total number of people who can attend your event."
+      booking:
+        email: "Your booking confirmation will be sent here."
+        quantity: "Between 1-4 people including yourself."
+        notes: "Please list the names of additional visitors, as well as other information the host may need."
     # Examples
     # labels:
     #   defaults:

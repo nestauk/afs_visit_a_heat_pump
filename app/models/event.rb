@@ -8,5 +8,5 @@ class Event < ApplicationRecord
   # TODO: capacity limit of 100 bookings?
   # TODO: date must be in the future
   # TODO: start_at cannot be after end_at
-  # TODO: counter cache bookings count
+  # TODO: counter cache bookings.quantity sum
 end

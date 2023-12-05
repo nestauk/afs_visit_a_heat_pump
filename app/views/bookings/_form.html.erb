@@ -1,9 +1,36 @@
+<section class="mb-6">
+  <div class="flex flex-wrap">
+    <div class="w-full md:w-1/2">
+      <div class="bg-cover bg-center h-64" style="background-image: url(<%= url_for(host.profile_picture) %>)"></div>
+    </div>
+
+    <div class="w-full md:w-1/2 p-6 bg-indigo-600 text-white">
+      <h2><%= host.user.first_name.pluralize %> show home</h2>
+      <p class="flex items-center gap-4 mb-4">
+        <%= image_tag 'location-pin-icon.svg', alt: 'White location pin icon', width: 30, height: 30 %>
+        <%= host.city %>
+      </p>
+      <p class="flex items-center gap-4 mb-4">
+        <%= image_tag 'home-icon-white.svg', alt: 'White outline of a house icon', width: 30, height: 30 %>
+        <%= host.property_type %>, <%= host.no_of_bedrooms %> bedrooms
+      </p>
+      <p class="flex items-center gap-4">
+        <%= image_tag 'hp-icon-white.svg', alt: 'White outline of heat pump icon', width: 30, height: 30 %>
+        <%= host.hp_type %> heat pump
+      </p>
+
+    </div>
+  </div>
+</section>
+
 <%= simple_form_for [host, event, booking] do |f| %>
-  <%= f.input :first_name %>
-  <%= f.input :last_name %>
+  <div class="flex gap-2">
+    <%= f.input :first_name, wrapper_html: { class: 'grow' } %>
+    <%= f.input :last_name, wrapper_html: { class: 'grow' } %>
+  </div>
   <%= f.input :email %>
-  <%= f.input :quantity %>
+  <%= f.input :quantity, collection: 1..4 %>
   <%= f.input :notes %>
 
-  <%= f.button :submit, 'Book', class: 'btn bg-indigo-600 text-white', data: { turbo_submits_with: 'Saving...' } %>
+  <%= f.button :submit, 'Book', class: 'btn bg-indigo-600 text-white w-full', data: { turbo_submits_with: 'Booking...' } %>
 <% end %>

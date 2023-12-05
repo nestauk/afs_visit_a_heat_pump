@@ -5,6 +5,7 @@ class Booking < ApplicationRecord
 
   # TODO: validate email
   # TODO: already booked
+  # TODO: quantity
 
   def full_name
     "#{first_name} #{last_name}"

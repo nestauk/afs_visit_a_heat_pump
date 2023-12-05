@@ -8,13 +8,13 @@
 
 <section class="mt-4">
   <div class="flex flex-wrap">
-    <div class="w-full md:w-1/2">
-      <%= image_tag @host.profile_picture, alt: 'Host profile picture' %>
+    <div class="w-full md:w-1/2 h-72">
+      <div class="bg-cover bg-center h-72" style="background-image: url(<%= url_for(@host.profile_picture) %>)"></div>
     </div>
 
     <div class="w-full md:w-1/2 p-8 bg-indigo-600 text-white">
       <h1><%= @host.user.first_name.pluralize %> show home</h1>
-      <div  iv class="text-lg">
+      <div class="text-lg">
         <p class="flex items-center gap-4 mb-4">
           <%= image_tag 'location-pin-icon.svg', alt: 'White location pin icon', width: 36, height: 36 %>
           <%= @host.city %>
@@ -45,7 +45,7 @@
           <%= e.start_at.strftime("%H:%M") %> - <%= e.end_at.strftime("%H:%M") %>
         </div>
         <div class="w-1/3">
-          <%= e.bookings.count %> of <%= e.capacity %> bookings
+          <%= e.bookings.sum(:quantity) %> of <%= e.capacity %> places taken
         </div>
         <%= link_to 'Book a visit', new_host_event_booking_path(@host, e), class: 'btn bg-indigo-600 text-white shrink-0' %>
       </div>
