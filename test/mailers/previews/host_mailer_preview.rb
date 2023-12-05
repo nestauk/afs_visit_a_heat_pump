@@ -1,4 +1,4 @@
-# Preview all emails at http://localhost:3000/rails/mailers/booking_mailer
+# Preview all emails at http://localhost:3000/rails/mailers/host_mailer
 class HostMailerPreview < ActionMailer::Preview
   def cancel_event
     user = User.new(first_name: 'Jane')
