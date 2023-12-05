@@ -1,7 +1,7 @@
 <%= simple_form_for host do |f| %>
   <section class="py-6 border-t border-indigo-600">
     <div class="flex items-start mb-2">
-      <%= image_tag 'home-icon.svg' %>
+      <%= image_tag 'home-icon.svg', alt: 'Indigo outline of house icon' %>
       <h2 class="ml-3 text-3xl text-indigo-600">About your home</h2>
     </div>
 
@@ -21,14 +21,14 @@
     <% if host.profile_picture.attached? && host.profile_picture.persisted?%>
       <div class="mb-4">
         <em class="text-sm"><%= host.profile_picture.blob.filename %></em>
-        <%= image_tag host.profile_picture, width: 250 %>
+        <%= image_tag host.profile_picture, alt: 'Host profile pictire', width: 250 %>
       </div>
     <% end %>
   </section>
 
   <section class="py-6 border-t border-indigo-600">
     <div class="flex items-start mb-5">
-      <%= image_tag 'hp-icon.svg' %>
+      <%= image_tag 'hp-icon.svg', alt: 'Indigo outline of heat pump icon' %>
       <h2 class="ml-3 text-3xl text-indigo-600">About your heat pump</h2>
     </div>
     <%= f.input :hp_type, as: :select, collection: Host::HP_TYPES %>

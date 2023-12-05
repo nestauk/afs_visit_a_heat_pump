@@ -36,7 +36,7 @@
       <% if @events.any? %>
       <% else %>
         <div class="flex flex-col items-center justify-center h-64">
-          <%= image_tag 'calendar-icon.svg', width: 150, height: 150 %>
+          <%= image_tag 'calendar-icon.svg', alt: 'Grey calendar icon', width: 150, height: 150 %>
           <div class="text-gray-600">No events, try add one.</div>
         </div>
       <% end %>
@@ -52,7 +52,7 @@
             <p class="flex items-center">
               <%= e.start_at.strftime("%H:%M") %> - <%= e.end_at.strftime("%H:%M") %>
               <span class="mx-2">&middot;</span>
-              <%= image_tag 'ticket-icon-white.svg', width: 24, height: 24 %>
+              <%= image_tag 'ticket-icon-white.svg', alt: 'White ticket icon', width: 24, height: 24 %>
               <strong><%= e.bookings.count %></strong>&nbsp;of&nbsp;<strong><%= e.capacity %></strong>&nbsp;bookings
             </p>
           </div>
@@ -78,7 +78,7 @@
       <% end %>
     <% else %>
       <div class="flex flex-col items-center justify-center h-64">
-        <%= image_tag 'calendar-icon.svg', width: 150, height: 150 %>
+        <%= image_tag 'calendar-icon.svg', alt: 'Grey calendar icon', width: 150, height: 150 %>
         <div class="text-gray-600">Complete your profile to add events.</div>
       </div>
     <% end %>
