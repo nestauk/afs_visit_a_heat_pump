@@ -149,6 +149,8 @@ GEM
     mime-types-data (3.2023.1003)
     mini_mime (1.1.5)
     minitest (5.20.0)
+    mocha (2.1.0)
+      ruby2_keywords (>= 0.0.5)
     msgpack (1.7.2)
     net-imap (0.4.7)
       date
@@ -224,6 +226,7 @@ GEM
       netrc (~> 0.8)
     rexml (3.2.6)
     rollbar (3.4.1)
+    ruby2_keywords (0.0.5)
     ruby_http_client (3.5.5)
     rubyzip (2.3.2)
     selenium-webdriver (4.13.1)
@@ -288,6 +291,7 @@ DEPENDENCIES
   importmap-rails
   jbuilder
   mapkick-rb (~> 0.1.5)
+  mocha (~> 2.1)
   pg (~> 1.1)
   puma (~> 5.0)
   rails (~> 7.0.8)
