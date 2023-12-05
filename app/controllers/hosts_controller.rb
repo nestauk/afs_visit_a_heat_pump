@@ -1,5 +1,5 @@
 class HostsController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: %i[ show ]
   before_action :set_host, only: %i[ show edit update ]
 
   def home
