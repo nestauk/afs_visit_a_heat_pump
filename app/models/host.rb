@@ -18,4 +18,8 @@ class Host < ApplicationRecord
   def upcoming_events
     events.where('date > ?', Date.today)
   end
+
+  def display_name
+    "#{user.first_name}, #{city}"
+  end
 end

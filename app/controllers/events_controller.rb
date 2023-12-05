@@ -1,6 +1,6 @@
 class EventsController < ApplicationController
   before_action :authenticate_user!, :set_host
-  before_action :set_event, only: %i[ edit update ]
+  before_action :set_event, only: %i[ edit update cancel ]
 
   def new
     @event = @host.events.new
@@ -25,6 +25,11 @@ class EventsController < ApplicationController
     else
       render :edit, status: :unprocessable_entity
     end
+  end
+
+  def cancel
+    @event.cancel!
+    redirect_to host_home_path
   end
 
   private

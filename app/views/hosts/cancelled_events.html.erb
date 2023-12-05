@@ -12,13 +12,16 @@
     </div>
 
     <nav class="my-4">
-      <span class="font-bold">Upcoming events</span>
+      <%= link_to "Upcoming events", host_home_path, class: "link", data: { turbo_frame: :tab_content } %>
       <span class="mx-2">&middot;</span>
       <%= link_to "Past events", host_past_path, class: "link", data: { turbo_frame: :tab_content } %>
       <span class="mx-2">&middot;</span>
-      <%= link_to "Cancelled events", host_cancelled_path, class: "link", data: { turbo_frame: :tab_content } %>
+      <span class="font-bold">Cancelled events</span>
     </nav>
 
-    <%= render 'events_list', no_events_msg: 'No upcoming events', edit: true %>
+    <%= render 'events_list', no_events_msg: 'No cancelled events', edit: false %>
   </section>
 </div>
+
+
+

@@ -4,11 +4,21 @@ class HostsController < ApplicationController
 
   def home
     @host = current_user.host
-    @events = @host.events.order(:date) if @host
+    @events = @host.events.active if @host
+  end
+
+  def past_events
+    @host = current_user.host
+    @events = @host.events.past if @host
+  end
+
+  def cancelled_events
+    @host = current_user.host
+    @events = @host.events.cancelled if @host
   end
 
   def show
-    @events = @host.events.where('date > ?', Date.today).order(:date)
+    @events = @host.events.active
   end
 
   def new

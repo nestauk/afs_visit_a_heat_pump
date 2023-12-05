@@ -6,6 +6,7 @@ class CreateEvents < ActiveRecord::Migration[7.0]
       t.time :start_at
       t.time :end_at
       t.integer :capacity
+      t.datetime :cancelled_at
 
       t.timestamps
     end

@@ -88,6 +88,8 @@ GEM
       rest-client (>= 2.0.0)
     concurrent-ruby (1.2.2)
     crass (1.0.6)
+    css_parser (1.16.0)
+      addressable
     date (3.3.4)
     debug (1.8.0)
       irb (>= 1.5.0)
@@ -129,6 +131,10 @@ GEM
     jbuilder (2.11.5)
       actionview (>= 5.0.0)
       activesupport (>= 5.0.0)
+    launchy (2.5.2)
+      addressable (~> 2.8)
+    letter_opener (1.8.1)
+      launchy (>= 2.2, < 3)
     listen (3.8.0)
       rb-fsevent (~> 0.10, >= 0.10.3)
       rb-inotify (~> 0.9, >= 0.9.10)
@@ -225,6 +231,12 @@ GEM
       mime-types (>= 1.16, < 4.0)
       netrc (~> 0.8)
     rexml (3.2.6)
+    roadie (5.2.0)
+      css_parser (~> 1.4)
+      nokogiri (~> 1.15)
+    roadie-rails (3.1.0)
+      railties (>= 5.1, < 8.0)
+      roadie (~> 5.0)
     rollbar (3.4.1)
     ruby2_keywords (0.0.5)
     ruby_http_client (3.5.5)
@@ -290,6 +302,7 @@ DEPENDENCIES
   hotwire-livereload (~> 1.2)
   importmap-rails
   jbuilder
+  letter_opener (~> 1.8)
   mapkick-rb (~> 0.1.5)
   mocha (~> 2.1)
   pg (~> 1.1)
@@ -297,6 +310,7 @@ DEPENDENCIES
   rails (~> 7.0.8)
   redis (~> 4.0)
   rexml (~> 3.2)
+  roadie-rails (~> 3.1)
   rollbar (~> 3.4)
   selenium-webdriver
   sendgrid-ruby (~> 6.7)

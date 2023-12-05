@@ -7,4 +7,11 @@
   <%= f.input :capacity %>
 
   <%= f.button :submit, 'Save', class: 'btn bg-indigo-600 text-white w-full', data: { turbo_submits_with: 'Saving...' } %>
+
+  <% if %w[ edit update ].include?(action_name) %>
+    <p class="text-sm text-gray-600 my-2">
+      Changing the date and times of your event will notify anyone who has booked.
+      Alternatively you can <%= link_to 'cancel the event', cancel_host_event_path(host, event), class: 'link text-indigo-600', data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' } %>, which will also notify people who have booked.
+    </p>
+  <% end %>
 <% end %>

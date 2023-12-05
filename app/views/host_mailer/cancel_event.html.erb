@@ -1,0 +1,16 @@
+<h1>Event cancelled</h1>
+
+<p class="mb-4">Unfortunately the heat pump visit event you booked to attend has been cancelled.</p>
+
+<h2>Event details</h2>
+<p class="mb-2">
+  <strong>Host:</strong> <%= link_to @event.host.display_name, host_url(@event.host), target: '_blank', class: 'link text-indigo-600' %>
+</p>
+<p class="mb-2">
+  <strong>Date:</strong> <%= @event.date.strftime("%A %d %b %G") %>
+</p>
+<p class="mb-4">
+  <strong>Time:</strong> <%= @event.start_at.strftime("%H:%M") %> - <%= @event.end_at.strftime("%H:%M") %>
+</p>
+
+<%= link_to 'Find alternative events', root_url, target: '_blank', class: 'mb-4 btn bg-indigo-600 text-white' %>

@@ -1,0 +1,48 @@
+<% if @events&.any? %>
+
+  <%- @events.each do |e| %>
+    <div class="border-2 border-indigo-600 mb-6">
+      <div class="text-white p-4 <%= edit ? 'bg-indigo-600' : 'bg-gray-600' %>">
+        <div class="flex justify-between items-start">
+          <h2><%= e.date.strftime("%A %d %b %G") %></h2>
+          <% if edit %>
+            <%= link_to 'Edit', edit_host_event_path(@host, e), class: 'btn-sm bg-white text-indigo-600' %>
+          <% end %>
+        </div>
+
+        <p class="flex items-center">
+          <%= e.start_at.strftime("%H:%M") %> - <%= e.end_at.strftime("%H:%M") %>
+          <span class="mx-2">&middot;</span>
+          <%= image_tag 'ticket-icon-white.svg', alt: 'White ticket icon', width: 24, height: 24 %>
+          <strong><%= e.bookings.sum(:quantity) %></strong>&nbsp;of&nbsp;<strong><%= e.capacity %></strong>&nbsp;places taken
+        </p>
+      </div>
+
+      <% if e.bookings.any? %>
+        <details>
+          <summary class="px-4 py-3 text-sm link no-underline hover:bg-indigo-100">
+            View bookings
+          </summary>
+          <div>
+            <%- e.bookings.each do |b| %>
+              <p class="px-4 py-3 border-t border-gray-400">
+                <strong><%= b.full_name.titleize %></strong> booked a visit for <strong><%= b.quantity %></strong> people at <%= b.updated_at.strftime("%H:%M on %d %b %G") %>.
+              </p>
+              <% if b.notes.present? %>
+                <p class="px-4 mb-3 text-gray-600 text-sm"><strong>Notes:</strong> <%= b.notes %></p>
+              <% end %>
+            <% end %>
+          </div>
+        </details>
+      <% end %>
+    </div>
+  <% end %>
+
+<% else %>
+
+  <div class="flex flex-col items-center justify-center h-64">
+    <%= image_tag 'calendar-icon.svg', alt: 'Grey calendar icon', width: 150, height: 150 %>
+    <div class="text-gray-600"><%= no_events_msg %></div>
+  </div>
+
+<% end %>

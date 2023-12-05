@@ -69,6 +69,7 @@ group :development do
   # gem "spring"
 
   gem "hotwire-livereload", "~> 1.2"
+  gem "letter_opener", "~> 1.8"
 end
 
 group :test do
@@ -83,6 +84,7 @@ gem "devise", "~> 4.9"
 gem "geokit-rails", "~> 2.5"
 gem "mapkick-rb", "~> 0.1.5"
 gem "rexml", "~> 3.2"
+gem "roadie-rails", "~> 3.1"
 gem "rollbar", "~> 3.4"
 gem "sendgrid-ruby", "~> 6.7"
 gem "simple_form", "~> 5.3"

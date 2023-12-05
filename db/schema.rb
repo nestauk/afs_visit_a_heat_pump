@@ -60,6 +60,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_01_115220) do
     t.time "start_at"
     t.time "end_at"
     t.integer "capacity"
+    t.datetime "cancelled_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["host_id"], name: "index_events_on_host_id"

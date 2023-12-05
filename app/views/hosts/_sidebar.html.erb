@@ -1,0 +1,13 @@
+<div class="p-6 text-white bg-indigo-600">
+  <h1>Welcome <%= current_user.first_name %></h1>
+
+  <%- if @host %>
+    <%= link_to 'View public profile', @host, class: 'btn bg-white text-indigo-600 w-full mb-4' %>
+    <%= link_to 'Edit profile', edit_host_path(@host), class: 'btn bg-white text-indigo-600 w-full' %>
+  <% else %>
+    <p class="text-lg">
+      <%= link_to 'Complete your profile', new_host_path, class: 'link' %>
+      to get started.
+    </p>
+  <% end %>
+</div>
