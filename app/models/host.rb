@@ -15,10 +15,6 @@ class Host < ApplicationRecord
 
   validates :no_of_bedrooms, :hp_size, numericality: { greater_than: 0, allow_nil: true }
 
-  def upcoming_events
-    events.where('date > ?', Date.today)
-  end
-
   def display_name
     "#{user.first_name}, #{city}"
   end
