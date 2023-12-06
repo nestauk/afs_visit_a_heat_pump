@@ -23,6 +23,14 @@ class HostsTest < ApplicationSystemTestCase
     assert_text 'Host profile created'
   end
 
+  test 'cannot create more than one profile' do
+    sign_in
+    sleep 1
+    visit new_host_path
+    assert_current_path host_home_path
+    assert_text 'Access denied'
+  end
+
   test 'can edit profile' do
     sign_in
     click_on 'Edit profile'

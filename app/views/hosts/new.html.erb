@@ -1,7 +1,13 @@
 <div class="mx-auto my-10 max-w-prose">
-  <h1 class="font-bold text-5xl text-indigo-600 mt-3">Start hosting</h1>
+  <div class="bg-gray-200 p-6 mb-10">
+    <h1>Hi <%= current_user.first_name %>, welcome to our community!</h1>
+    <p class="mb-2">To get hosting please add details about your heat pump and property below.</p>
 
-  <p class="mt-6 mb-10 text-lg">Register an account below to get started hosting heat pump visits. Once you're registered we'll guide you though setting up and running visits, as well as connecting you to interested visitors in your area.</p>
+    <ul class="list-disc">
+      <li class="ml-6 mb-2">This information will be used to create a public property profile.</li>
+      <li class="ml-6">Your address will remain private and only be shared with visitors who book to visit one of your events.</li>
+    </ul>
+  </div>
 
   <%= render "form", host: @host %>
 </div>

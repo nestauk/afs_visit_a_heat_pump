@@ -22,6 +22,7 @@ class HostsController < ApplicationController
   end
 
   def new
+    return redirect_to host_home_path, alert: 'Access denied' if current_user&.host
     @host = Host.new
     @host.user = current_user
   end

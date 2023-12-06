@@ -1,6 +1,7 @@
 <% if @host == current_user&.host %>
-  <div class="flex items-center justify-between">
-    <%= link_to "‹ Back", host_home_path, class: "link text-gray-700" %>
+  <%= link_to "‹ Back to dashboard", host_home_path, class: "link text-gray-700 mb-4 inline-block" %>
+  <div class="flex items-center justify-between rounded bg-indigo-100 text-indigo-900 p-2 mb-4">
+    <p>This is what visitors see on our website.</p>
     <%= link_to 'Edit profile', edit_host_path(@host), class: "btn-sm bg-indigo-600 text-white" %>
   </div>
 <% else %>
