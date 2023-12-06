@@ -1,0 +1,4 @@
+profile_picture:
+  name: profile_picture
+  record: one (Host)
+  blob: profile_picture_blob

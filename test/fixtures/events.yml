@@ -1,0 +1,21 @@
+one:
+  host: one
+  date: <%= Date.today %>
+  start_at: <%= Time.now %>
+  end_at: <%= 2.hours.from_now %>
+  capacity: 10
+
+past:
+  host: one
+  date: <%= 2.days.ago %>
+  start_at: <%= Time.now %>
+  end_at: <%= 2.hours.from_now %>
+  capacity: 10
+
+cancelled:
+  host: one
+  date: <%= Date.today %>
+  start_at: <%= Time.now %>
+  end_at: <%= 2.hours.from_now %>
+  capacity: 10
+  cancelled_at: <%= 1.hour.ago %>

@@ -9,11 +9,11 @@ class Event < ApplicationRecord
 
   validates :date, :start_at, :end_at, :capacity, presence: true
 
-  # TODO: capacity limit of 100 bookings?
-  # TODO: date must be in the future
-  # TODO: start_at cannot be after end_at
+  validates :capacity, numericality: { greater_than: 0, less_than_or_equal_to: 100 }
+
+  validate :date_in_future, :end_time_after_start_time, :capacity_greater_than_bookings
+
   # TODO: counter cache bookings.quantity sum
-  # TODO: can't change capacity to less than bookings
 
   def cancelled_at=(value)
     bool = ActiveModel::Type::Boolean.new.cast(value)
@@ -26,4 +26,25 @@ class Event < ApplicationRecord
       HostMailer.cancel_event(self, booking).deliver_now
     end
   end
+
+  private
+
+    def date_in_future
+      if date.present?
+        errors.add(:date, 'cannot be in the past') if date < Date.today
+      end
+    end
+
+    def end_time_after_start_time
+      if start_at.present? && end_at.present?
+        errors.add(:end_at, 'end time must be after start time') if end_at <= start_at
+      end
+    end
+
+    def capacity_greater_than_bookings
+      places_booked = bookings&.sum(:quantity)
+      if capacity.present? && places_booked
+        errors.add(:capacity, "#{places_booked} places already booked, event capacity must be #{places_booked} or more") if capacity < places_booked
+      end
+    end
 end

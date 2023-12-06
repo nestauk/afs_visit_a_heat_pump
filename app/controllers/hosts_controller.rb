@@ -42,7 +42,7 @@ class HostsController < ApplicationController
 
   def update
     if @host.update(host_params)
-      redirect_to host_url(@host), notice: "Host profile updated."
+      redirect_to host_path(@host), notice: "Host profile updated."
     else
       render :edit, status: :unprocessable_entity
     end

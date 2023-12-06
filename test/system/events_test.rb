@@ -2,48 +2,71 @@ require "application_system_test_case"
 
 class EventsTest < ApplicationSystemTestCase
   setup do
-    @event = events(:one)
+    @user = users(:one)
+    @host = hosts(:one)
   end
 
-  test "visiting the index" do
-    visit events_url
-    assert_selector "h1", text: "Events"
+  test 'can create event' do
+    sign_in
+    click_on 'Add event'
+    complete_event_form
+    assert_link 'Edit', href: edit_host_event_path(@host, @host.events.last)
   end
 
-  test "should create event" do
-    visit events_url
-    click_on "New event"
-
-    fill_in "Capacity", with: @event.capacity
-    fill_in "Date", with: @event.date
-    fill_in "End at", with: @event.end_at
-    fill_in "Host", with: @event.host_id
-    fill_in "Start at", with: @event.start_at
-    click_on "Create Event"
-
-    assert_text "Event was successfully created"
-    click_on "Back"
+  test 'can edit event' do
+    sign_in
+    click_on 'Edit'
+    fill_in 'Maximum number of visitors', with: 20
+    click_button 'Save'
+    assert_current_path host_home_path
+    assert_text 'Event updated'
   end
 
-  test "should update Event" do
-    visit event_url(@event)
-    click_on "Edit this event", match: :first
-
-    fill_in "Capacity", with: @event.capacity
-    fill_in "Date", with: @event.date
-    fill_in "End at", with: @event.end_at
-    fill_in "Host", with: @event.host_id
-    fill_in "Start at", with: @event.start_at
-    click_on "Update Event"
-
-    assert_text "Event was successfully updated"
-    click_on "Back"
+  test 'can cancel event' do
+    event = @host.events.last
+    sign_in
+    click_on 'Edit'
+    accept_confirm { click_on 'cancel the event' }
+    click_on 'Cancelled events'
+    assert_text event.date.strftime("%A %d %b %G"), count: 2
+    assert_no_link edit_host_event_path(@host, event)
   end
 
-  test "should destroy Event" do
-    visit event_url(@event)
-    click_on "Destroy this event", match: :first
+  test 'cancelling event with bookings notifies visitors' do
+    event = @host.events.last
+    booking = event.bookings.last
+    sign_in
+    click_on 'Edit'
+    accept_confirm { click_on 'cancel the event' }
+    sleep 1 # ensure mail delivered - not ideal but does the job
+    ActionMailer::Base.deliveries do |email|
+      assert_equal email.subject, "Event cancelled - Visit a heat pump"
+      assert_includes email.to, booking.email
+    end
+  end
 
-    assert_text "Event was successfully destroyed"
+  test 'can see past events' do
+    event = @host.events.last
+    event.update_column(:date, 1.day.ago)
+    sign_in
+    click_on 'Past events'
+    assert_text event.date.strftime("%A %d %b %G"), count: 1
+    assert_no_link edit_host_event_path(@host, event)
+  end
+
+  test 'cannot edit past event' do
+    sign_in
+    sleep 1
+    visit edit_host_event_path(@host, events(:past))
+    assert_current_path host_home_path
+    assert_text 'Unpermitted action'
+  end
+
+  def complete_event_form
+    fill_in 'Date', with: 3.days.from_now
+    select 10, from: 'Start time'
+    select 13, from: 'End time'
+    fill_in 'Maximum number of visitors', with: 10
+    click_button 'Save'
   end
 end

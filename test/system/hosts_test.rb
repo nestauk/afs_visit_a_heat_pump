@@ -6,29 +6,39 @@ class HostsTest < ApplicationSystemTestCase
     @host = hosts(:one)
   end
 
-  test "can sign up" do
+  test 'can sign up' do
     complete_sign_up_form
     assert_current_path host_home_path
   end
 
-  test "can sign in" do
+  test 'can sign in' do
     sign_in
     assert_current_path host_home_path
   end
 
-  test "can create profile" do
+  test 'can create profile' do
     complete_sign_up_form
     click_on 'Complete your profile'
     assert_current_path new_host_path
     complete_host_form
     assert_current_path host_home_path
+    assert_text 'Host profile created'
   end
 
-  test "can create event" do
+  test 'can edit profile' do
     sign_in
-    click_on 'Add event'
-    complete_event_form
-    assert_link 'Edit', href: edit_host_event_path(@host, @host.events.last)
+    click_on 'Edit profile'
+    attach_file :host_profile_picture, Rails.root + "test/fixtures/files/profile_pic.jpg"
+    fill_in 'Number of bedrooms', with: 4
+    click_button 'Save'
+    assert_current_path host_path(@host)
+    assert_text 'Host profile updated'
+  end
+
+  test 'can view public profile' do
+    sign_in
+    click_on 'View public profile'
+    assert_current_path host_path(@host)
   end
 
   def complete_sign_up_form
@@ -53,14 +63,6 @@ class HostsTest < ApplicationSystemTestCase
     fill_in 'Manufacturer', with: @host.hp_manufacturer
     select @host.hp_year_of_install, from: 'Year of installation'
     mock_geocoding_success!
-    click_button 'Save'
-  end
-
-  def complete_event_form
-    fill_in 'Date', with: 3.days.from_now
-    select 10, from: 'Start time'
-    select 13, from: 'End time'
-    fill_in 'Maximum number of visitors', with: 10
     click_button 'Save'
   end
 end

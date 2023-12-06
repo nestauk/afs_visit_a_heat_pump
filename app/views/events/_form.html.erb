@@ -4,7 +4,7 @@
     <%= f.input :start_at, as: :time, minute_step: 15 %>
     <%= f.input :end_at, as: :time, minute_step: 15 %>
   </div>
-  <%= f.input :capacity %>
+  <%= f.input :capacity, input_html: { min: 1, max: 100 } %>
 
   <%= f.button :submit, 'Save', class: 'btn bg-indigo-600 text-white w-full', data: { turbo_submits_with: 'Saving...' } %>
 

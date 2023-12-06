@@ -1,0 +1,13 @@
+one:
+  event: one
+  first_name: "Vistor"
+  last_name: "One"
+  email: "vistor.two@email.com"
+  quantity: 1
+
+two:
+  event: one
+  first_name: "Vistor"
+  last_name: "Two"
+  email: "vistor.one@email.com"
+  quantity: 1

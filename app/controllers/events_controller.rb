@@ -1,6 +1,6 @@
 class EventsController < ApplicationController
   before_action :authenticate_user!, :set_host
-  before_action :set_event, only: %i[ edit update cancel ]
+  before_action :set_event, :cannot_change_past_or_cancelled, only: %i[ edit update cancel ]
 
   def new
     @event = @host.events.new
@@ -43,5 +43,9 @@ class EventsController < ApplicationController
 
     def event_params
       params.require(:event).permit(:date, :start_at, :end_at, :capacity)
+    end
+
+    def cannot_change_past_or_cancelled
+      redirect_to host_home_path, alert: 'Unpermitted action' if @event.date.past? || @event.cancelled_at?
     end
 end
