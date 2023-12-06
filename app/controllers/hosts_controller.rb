@@ -57,7 +57,7 @@ class HostsController < ApplicationController
       params.require(:host).permit(
         :street_address, :city, :postcode, :property_type, :hp_type,
         :profile_picture, :no_of_bedrooms, :useful_info, :hp_manufacturer,
-        :hp_size, :hp_year_of_install, :upcoming_dates
+        :hp_size, :hp_year_of_install, :upcoming_dates, :property_age
       )
     end
 end

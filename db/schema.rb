@@ -74,6 +74,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_01_115220) do
     t.float "lng"
     t.string "property_type"
     t.integer "no_of_bedrooms"
+    t.string "property_age"
     t.text "useful_info"
     t.text "upcoming_dates"
     t.string "hp_type"

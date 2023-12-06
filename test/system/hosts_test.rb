@@ -58,6 +58,7 @@ class HostsTest < ApplicationSystemTestCase
     fill_in 'Postcode', with: @host.postcode
     select @host.property_type, from: 'Property type'
     fill_in 'Number of bedrooms', with: @host.no_of_bedrooms
+    select @host.property_age, from: 'Property age'
     attach_file :host_profile_picture, Rails.root + "test/fixtures/files/profile_pic.jpg"
     select @host.hp_type, from: 'Heat pump type'
     fill_in 'Manufacturer', with: @host.hp_manufacturer

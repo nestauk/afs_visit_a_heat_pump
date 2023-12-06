@@ -1,5 +1,6 @@
 class Host < ApplicationRecord
   PROPERTY_TYPES = [ 'Detached', 'Semi-detached', 'Terrace', 'Bungalow', 'Flat/masionette', 'Other' ].freeze
+  PROPERTY_AGES = [ 'Pre 1920', '1920 - 1944', '1945 - 1964', '1965 - 1982', '1983 - 2002', 'Post 2003' ].freeze
   HP_TYPES = [ 'Air source', 'Ground source', 'Other' ].freeze
 
   acts_as_mappable auto_geocode: { field: :postcode }
@@ -11,11 +12,19 @@ class Host < ApplicationRecord
 
   validates :street_address, :city, :postcode, :property_type, :hp_type,
             :profile_picture, :no_of_bedrooms, :hp_manufacturer,
-            :hp_year_of_install, presence: true
+            :hp_year_of_install, :property_age, presence: true
 
   validates :no_of_bedrooms, :hp_size, numericality: { greater_than: 0, allow_nil: true }
 
+  validates :property_type, inclusion: { in: PROPERTY_TYPES }
+  validates :property_age, inclusion: { in: PROPERTY_AGES }
+  validates :hp_type, inclusion: { in: HP_TYPES }
+
   def display_name
-    "#{user.first_name}, #{city}"
+    "#{property_type} in #{city}"
+  end
+
+  def subtitle
+    "#{hp_type} heat pump in a #{property_age} property, hosted by #{user.first_name.titleize}."
   end
 end

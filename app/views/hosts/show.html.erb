@@ -13,18 +13,19 @@
     </div>
 
     <div class="w-full md:w-1/2 p-8 bg-indigo-600 text-white">
-      <h1><%= @host.user.first_name.pluralize %> show home</h1>
-      <div class="text-lg">
-        <p class="flex items-center gap-4 mb-4">
-          <%= image_tag 'location-pin-icon.svg', alt: 'White location pin icon', width: 36, height: 36 %>
+      <h1><%= @host.display_name %></h1>
+      <p class="mb-3"><%= @host.subtitle %></p>
+      <div class="text-l">
+        <p class="flex items-center gap-4 mb-3">
+          <%= image_tag 'location-pin-icon.svg', alt: 'White location pin icon', width: 30, height: 30 %>
           <%= @host.city %>
         </p>
-        <p class="flex items-center gap-4 mb-4">
-          <%= image_tag 'home-icon-white.svg', alt: 'White outline of a house icon', width: 36, height: 36 %>
-          <%= @host.property_type %>, <%= @host.no_of_bedrooms %> bedrooms
+        <p class="flex items-center gap-4 mb-3">
+          <%= image_tag 'home-icon-white.svg', alt: 'White outline of a house icon', width: 30, height: 30 %>
+          <%= @host.no_of_bedrooms %> bedrooms
         </p>
         <p class="flex items-center gap-4">
-          <%= image_tag 'hp-icon-white.svg', alt: 'White outline of heat pump icon', width: 36, height: 36 %>
+          <%= image_tag 'hp-icon-white.svg', alt: 'White outline of heat pump icon', width: 30, height: 30 %>
           <%= @host.hp_type %> heat pump
         </p>
       </div>

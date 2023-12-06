@@ -14,6 +14,7 @@
     </div>
     <%= f.input :property_type, as: :select, collection: Host::PROPERTY_TYPES %>
     <%= f.input :no_of_bedrooms, input_html: { min: 1 } %>
+    <%= f.input :property_age, collection: Host::PROPERTY_AGES %>
     <%= f.input :useful_info %>
     <%= f.input :upcoming_dates %>
 
