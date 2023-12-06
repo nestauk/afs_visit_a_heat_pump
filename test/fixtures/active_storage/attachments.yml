@@ -2,3 +2,8 @@ profile_picture:
   name: profile_picture
   record: one (Host)
   blob: profile_picture_blob
+
+profile_picture_2:
+  name: profile_picture
+  record: two (Host)
+  blob: profile_picture_blob

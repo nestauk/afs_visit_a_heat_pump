@@ -62,6 +62,6 @@ class HostTest < ActiveSupport::TestCase
   end
 
   test '#subtitle' do
-    assert_equal @subject.subtitle, "Air source heat pump in a 1920 - 1944 property, hosted by John."
+    assert_equal @subject.subtitle, "Air source heat pump in a 1920 - 1944 property, hosted by User."
   end
 end

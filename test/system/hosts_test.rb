@@ -33,10 +33,30 @@ class HostsTest < ApplicationSystemTestCase
     assert_text 'Host profile updated'
   end
 
+  test 'cannot edit the profile of other hosts' do
+    sign_in
+    sleep 1
+    visit edit_host_path(hosts(:two))
+    assert_current_path host_home_path
+    assert_text 'Access denied'
+  end
+
   test 'can view public profile' do
     sign_in
     click_on 'View public profile'
     assert_current_path host_path(@host)
+  end
+
+  test 'can view public profile of other hosts' do
+    path = host_path(hosts(:two))
+    visit path
+    assert_current_path path
+  end
+
+  test 'public host profile not found' do
+    visit host_path('missing')
+    assert_current_path hosts_path
+    assert_text 'Host not found'
   end
 
   def complete_sign_up_form

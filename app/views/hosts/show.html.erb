@@ -1,7 +1,8 @@
-<% if signed_in? %>
-  <%= link_to "‹ Back", host_home_path, class: "link text-gray-700" %>
-  <span class="mx-2">&middot;</span>
-  <%= link_to 'Edit', edit_host_path(@host), class: "link" %>
+<% if @host == current_user&.host %>
+  <div class="flex items-center justify-between">
+    <%= link_to "‹ Back", host_home_path, class: "link text-gray-700" %>
+    <%= link_to 'Edit profile', edit_host_path(@host), class: "btn-sm bg-indigo-600 text-white" %>
+  </div>
 <% else %>
   <%= link_to "‹ Back", :back, class: "link text-gray-700" %>
 <% end %>

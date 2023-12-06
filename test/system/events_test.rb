@@ -62,6 +62,20 @@ class EventsTest < ApplicationSystemTestCase
     assert_text 'Unpermitted action'
   end
 
+  test 'can only create events for own host account' do
+    sign_in
+    sleep 1
+    visit new_host_event_path(hosts(:two))
+    assert_current_path host_home_path
+  end
+
+  test 'can only edit events for own host account' do
+    sign_in
+    sleep 1
+    visit edit_host_event_path(hosts(:two), events(:one))
+    assert_current_path host_home_path
+  end
+
   def complete_event_form
     fill_in 'Date', with: 3.days.from_now
     select 10, from: 'Start time'

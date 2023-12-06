@@ -1,6 +1,7 @@
 class EventsController < ApplicationController
   before_action :authenticate_user!, :set_host
   before_action :set_event, :cannot_change_past_or_cancelled, only: %i[ edit update cancel ]
+  before_action :cannot_access_records_of_other_hosts, only: %i[ new edit ]
 
   def new
     @event = @host.events.new
@@ -47,5 +48,9 @@ class EventsController < ApplicationController
 
     def cannot_change_past_or_cancelled
       redirect_to host_home_path, alert: 'Unpermitted action' if @event.date.past? || @event.cancelled_at?
+    end
+
+    def cannot_access_records_of_other_hosts
+      return redirect_to host_home_path if @host != current_user.host
     end
 end
