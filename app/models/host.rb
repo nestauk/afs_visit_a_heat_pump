@@ -20,6 +20,10 @@ class Host < ApplicationRecord
   validates :property_age, inclusion: { in: PROPERTY_AGES }
   validates :hp_type, inclusion: { in: HP_TYPES }
 
+  def address
+    "#{street_address}, #{city}, #{postcode}"
+  end
+
   def display_name
     "#{property_type} in #{city}"
   end

@@ -27,6 +27,14 @@ class Event < ApplicationRecord
     end
   end
 
+  def notify_changes!
+    if (previous_changes.keys & ['date', 'start_at', 'end_at', 'capacity']).any?
+      bookings.each do |booking|
+        HostMailer.updated_event(self, booking).deliver_now
+      end
+    end
+  end
+
   private
 
     def date_in_future

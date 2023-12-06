@@ -22,6 +22,7 @@ class EventsController < ApplicationController
 
   def update
     if @event.update(event_params)
+      @event.notify_changes!
       redirect_to host_home_path, notice: "Event updated."
     else
       render :edit, status: :unprocessable_entity

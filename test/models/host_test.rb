@@ -57,6 +57,10 @@ class HostTest < ActiveSupport::TestCase
     assert_error :hp_type, 'is not included in the list'
   end
 
+  test '#address' do
+    assert_equal @subject.address, "123 Street Address, London, 123 ABC"
+  end
+
   test '#display_name' do
     assert_equal @subject.display_name, "Detached in London"
   end

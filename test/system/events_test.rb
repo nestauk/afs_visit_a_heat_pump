@@ -22,6 +22,20 @@ class EventsTest < ApplicationSystemTestCase
     assert_text 'Event updated'
   end
 
+  test 'editing event with bookings notifies visitors' do
+    ActionMailer::Base.deliveries = []
+    event = @host.events.last
+    booking = event.bookings.last
+    sign_in
+    click_on 'Edit'
+    fill_in 'Date', with: 7.days.from_now
+    click_button 'Save'
+    ActionMailer::Base.deliveries do |email|
+      assert_equal email.subject, "Event updated - Visit a heat pump"
+      assert_includes email.to, booking.email
+    end
+  end
+
   test 'can cancel event' do
     event = @host.events.last
     sign_in

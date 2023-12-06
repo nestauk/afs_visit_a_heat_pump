@@ -62,4 +62,15 @@ class EventTest < ActiveSupport::TestCase
     @subject.valid?
     assert_error(:capacity, '2 places already booked, event capacity must be 2 or more')
   end
+
+  test '#cancel!' do
+    ActionMailer::Base.deliveries = []
+    assert_nil @subject.cancelled_at
+    @subject.cancel!
+    assert_instance_of ActiveSupport::TimeWithZone, @subject.cancelled_at
+    last_email = ActionMailer::Base.deliveries.last
+    assert_equal last_email.subject, "Event cancelled - Visit a heat pump"
+  end
+
+  # TODO: test '#notify_changes!'
 end
