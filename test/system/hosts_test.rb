@@ -8,7 +8,7 @@ class HostsTest < ApplicationSystemTestCase
 
   test 'can sign up' do
     complete_sign_up_form
-    assert_current_path host_home_path
+    assert_current_path new_host_path
   end
 
   test 'can sign in' do
@@ -18,8 +18,6 @@ class HostsTest < ApplicationSystemTestCase
 
   test 'can create profile' do
     complete_sign_up_form
-    click_on 'Complete your profile'
-    assert_current_path new_host_path
     complete_host_form
     assert_current_path host_home_path
     assert_text 'Host profile created'
