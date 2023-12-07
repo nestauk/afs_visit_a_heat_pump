@@ -62,7 +62,7 @@ class HostTest < ActiveSupport::TestCase
   end
 
   test '#display_name' do
-    assert_equal @subject.display_name, "Detached in London"
+    assert_equal @subject.display_name, "Detached property in London"
   end
 
   test '#subtitle' do
