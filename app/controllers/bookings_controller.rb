@@ -12,6 +12,8 @@ class BookingsController < ApplicationController
     @booking = @event.bookings.new(booking_params)
 
     if @booking.save
+      @booking.notify_visitor!
+      @booking.notify_host!
       redirect_to @host, notice: "Booking created."
     else
       render :new, status: :unprocessable_entity

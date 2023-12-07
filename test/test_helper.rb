@@ -35,4 +35,16 @@ class ActiveSupport::TestCase
     subject.valid?
     assert_error(key, msg)
   end
+
+  def assert_email(recipient, subject)
+    deliveries = ActionMailer::Base.deliveries
+    email = deliveries.find { |e| e.to[0] == recipient }
+    assert_equal recipient, email.to[0]
+    assert_equal email.subject, subject
+  end
+
+  def assert_email_with_sleep(recipient, subject)
+    sleep 1 # ensure email sent, not ideas
+    assert_email(recipient, subject)
+  end
 end

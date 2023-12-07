@@ -1,0 +1,17 @@
+<h1>Booking confirmed</h1>
+
+<p>The heat pump visit event you booked to attend has been updated.</p>
+
+<h2>Event details</h2>
+<p>
+  <strong>Host:</strong> <%= link_to @event.host.display_name, host_url(@event.host), target: '_blank', class: 'link text-indigo-600' %>
+</p>
+<p>
+  <strong>Location:</strong> <%= @event.host.address %>
+</p>
+<p>
+  <strong>Date:</strong> <%= @event.date.strftime("%A %d %b %G") %>
+</p>
+<p>
+  <strong>Time:</strong> <%= @event.start_at.strftime("%H:%M") %> - <%= @event.end_at.strftime("%H:%M") %>
+</p>

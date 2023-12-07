@@ -68,8 +68,7 @@ class EventTest < ActiveSupport::TestCase
     assert_nil @subject.cancelled_at
     @subject.cancel!
     assert_instance_of ActiveSupport::TimeWithZone, @subject.cancelled_at
-    last_email = ActionMailer::Base.deliveries.last
-    assert_equal last_email.subject, "Event cancelled - Visit a heat pump"
+    assert_email bookings(:one).email, 'Event cancelled - Visit a heat pump'
   end
 
   # TODO: test '#notify_changes!'

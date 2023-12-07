@@ -23,14 +23,14 @@ class Event < ApplicationRecord
   def cancel!
     update(cancelled_at: Time.now)
     bookings.each do |booking|
-      HostMailer.cancel_event(self, booking).deliver_now
+      VisitorMailer.event_cancelled(self, booking).deliver_now
     end
   end
 
   def notify_changes!
     if (previous_changes.keys & ['date', 'start_at', 'end_at', 'capacity']).any?
       bookings.each do |booking|
-        HostMailer.updated_event(self, booking).deliver_now
+        VisitorMailer.event_updated(self, booking).deliver_now
       end
     end
   end

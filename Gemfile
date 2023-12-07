@@ -69,7 +69,6 @@ group :development do
   # gem "spring"
 
   gem "hotwire-livereload", "~> 1.2"
-  gem "letter_opener", "~> 1.8"
 end
 
 group :test do

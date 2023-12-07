@@ -25,14 +25,12 @@ class EventsTest < ApplicationSystemTestCase
   test 'editing event with bookings notifies visitors' do
     ActionMailer::Base.deliveries = []
     event = @host.events.last
-    booking = event.bookings.last
     sign_in
     click_on 'Edit'
     fill_in 'Date', with: 7.days.from_now
     click_button 'Save'
-    ActionMailer::Base.deliveries do |email|
-      assert_equal email.subject, "Event updated - Visit a heat pump"
-      assert_includes email.to, booking.email
+    event.bookings.pluck(:email).each do |to|
+      assert_email_with_sleep to, "Event updated - Visit a heat pump"
     end
   end
 
@@ -47,15 +45,13 @@ class EventsTest < ApplicationSystemTestCase
   end
 
   test 'cancelling event with bookings notifies visitors' do
+    ActionMailer::Base.deliveries = []
     event = @host.events.last
-    booking = event.bookings.last
     sign_in
     click_on 'Edit'
     accept_confirm { click_on 'cancel the event' }
-    sleep 1 # ensure mail delivered - not ideal but does the job
-    ActionMailer::Base.deliveries do |email|
-      assert_equal email.subject, "Event cancelled - Visit a heat pump"
-      assert_includes email.to, booking.email
+    event.bookings.pluck(:email).each do |to|
+      assert_email_with_sleep to, "Event cancelled - Visit a heat pump"
     end
   end
 
