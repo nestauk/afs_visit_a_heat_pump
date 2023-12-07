@@ -11,3 +11,4 @@ two:
   last_name: "Two"
   email: "vistor.one@email.com"
   quantity: 1
+  cancelled_at: <%= Time.now %>

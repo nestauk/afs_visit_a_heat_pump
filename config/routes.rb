@@ -8,6 +8,9 @@ Rails.application.routes.draw do
   get "/host/past_events", to: "hosts#past_events", as: "host_past"
   get "/host/cancelled_events", to: "hosts#cancelled_events", as: "host_cancelled"
 
+  get '/bookings/:token/cancel', to: 'bookings#review_cancellation', as: 'review_booking_cancellation'
+  delete '/bookings/:token/cancel', to: 'bookings#confirm_cancellation', as: 'confirm_booking_cancellation'
+
   # TODO: limit routes
   resources :hosts, except: :index do
     resources :events do

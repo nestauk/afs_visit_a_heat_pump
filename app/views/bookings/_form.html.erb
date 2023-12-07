@@ -28,7 +28,7 @@
   <p class="flex items-center">
     <%= @event.start_at.strftime("%H:%M") %> - <%= @event.end_at.strftime("%H:%M") %>
     <span class="mx-2">&middot;</span>
-    <strong><%= @event.bookings.sum(:quantity) %></strong>&nbsp;of&nbsp;<strong><%= @event.capacity %></strong>&nbsp;places taken
+    <strong><%= @event.active_bookings_count %></strong>&nbsp;of&nbsp;<strong><%= @event.capacity %></strong>&nbsp;places taken
   </p>
 </div>
 

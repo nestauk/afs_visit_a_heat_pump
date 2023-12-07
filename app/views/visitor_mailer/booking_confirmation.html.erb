@@ -4,7 +4,7 @@
 
 <h2>Event details</h2>
 <p>
-  <strong>Host:</strong> <%= link_to @event.host.display_name, host_url(@event.host), target: '_blank', class: 'link text-indigo-600' %>
+  <strong>Host:</strong> <%= link_to @event.host.display_name, host_url(@event.host), target: '_blank', rel: 'noopener', class: 'link text-indigo-600' %>
 </p>
 <p>
   <strong>Location:</strong> <%= @event.host.address %>
@@ -15,3 +15,5 @@
 <p>
   <strong>Time:</strong> <%= @event.start_at.strftime("%H:%M") %> - <%= @event.end_at.strftime("%H:%M") %>
 </p>
+
+<%= link_to 'Cancel booking', review_booking_cancellation_url(@token), target: '_blank', rel: 'noopener', class: 'btn' %>

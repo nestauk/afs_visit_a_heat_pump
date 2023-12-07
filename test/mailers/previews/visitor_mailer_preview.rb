@@ -11,6 +11,10 @@ class VisitorMailerPreview < ActionMailer::Preview
     VisitorMailer.booking_confirmation(@event, @booking).deliver_now
   end
 
+  def booking_cancelled
+    VisitorMailer.booking_cancelled(@event, @booking).deliver_now
+  end
+
   def event_updated
     VisitorMailer.event_updated(@event, @booking).deliver_now
   end

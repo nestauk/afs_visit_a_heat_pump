@@ -4,7 +4,7 @@
 
 <h2>Event details</h2>
 <p>
-  <strong>Host:</strong> <%= link_to @event.host.display_name, host_url(@event.host), target: '_blank', class: 'link text-indigo-600' %>
+  <strong>Host:</strong> <%= link_to @event.host.display_name, host_url(@event.host), target: '_blank', rel: 'noopener', class: 'link text-indigo-600' %>
 </p>
 <p>
   <strong>Date:</strong> <%= @event.date.strftime("%A %d %b %G") %>
@@ -13,4 +13,4 @@
   <strong>Time:</strong> <%= @event.start_at.strftime("%H:%M") %> - <%= @event.end_at.strftime("%H:%M") %>
 </p>
 
-<%= link_to 'Find alternative events', root_url, target: '_blank', class: 'btn' %>
+<%= link_to 'Find alternative events', root_url, target: '_blank', rel: 'noopener', class: 'btn' %>

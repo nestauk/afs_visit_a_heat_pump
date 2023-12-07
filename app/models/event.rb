@@ -15,9 +15,12 @@ class Event < ApplicationRecord
 
   # TODO: counter cache bookings.quantity sum
 
-  def cancelled_at=(value)
-    bool = ActiveModel::Type::Boolean.new.cast(value)
-    self[:cancelled_at] = bool.is_a?(TrueClass) ? Time.zone.now : nil
+  def active_bookings_count
+    bookings.where('cancelled_at IS NULL').sum(:quantity)
+  end
+
+  def capacity_reached?
+    active_bookings_count == capacity
   end
 
   def cancel!
@@ -50,9 +53,11 @@ class Event < ApplicationRecord
     end
 
     def capacity_greater_than_bookings
-      places_booked = bookings&.sum(:quantity)
-      if capacity.present? && places_booked
-        errors.add(:capacity, "#{places_booked} places already booked, event capacity must be #{places_booked} or more") if capacity < places_booked
+      if capacity.present?
+        errors.add(
+          :capacity,
+          "#{active_bookings_count} places already booked, event capacity must be #{active_bookings_count} or more"
+        ) if capacity < active_bookings_count
       end
     end
 end

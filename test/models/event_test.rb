@@ -58,9 +58,20 @@ class EventTest < ActiveSupport::TestCase
   end
 
   test 'capacity must be greater than bookings already made' do
+    bookings(:two).update!(cancelled_at: nil)
     @subject.capacity = 1
     @subject.valid?
     assert_error(:capacity, '2 places already booked, event capacity must be 2 or more')
+  end
+
+  test '#active_bookings_count' do
+    assert_equal 2, Booking.count
+    assert_equal 1, @subject.active_bookings_count
+  end
+
+  test '#capacity_reached?' do
+    @subject.capacity = 1
+    assert @subject.capacity_reached?
   end
 
   test '#cancel!' do

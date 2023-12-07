@@ -14,7 +14,7 @@
           <%= e.start_at.strftime("%H:%M") %> - <%= e.end_at.strftime("%H:%M") %>
           <span class="mx-2">&middot;</span>
           <%= image_tag 'ticket-icon-white.svg', alt: 'White ticket icon', width: 24, height: 24 %>
-          <strong><%= e.bookings.sum(:quantity) %></strong>&nbsp;of&nbsp;<strong><%= e.capacity %></strong>&nbsp;places taken
+          <strong><%= e.active_bookings_count %></strong>&nbsp;of&nbsp;<strong><%= e.capacity %></strong>&nbsp;places taken
         </p>
       </div>
 
@@ -25,7 +25,10 @@
           </summary>
           <div>
             <%- e.bookings.each do |b| %>
-              <p class="px-4 py-3 border-t border-gray-400">
+              <p class="px-4 py-3 border-t border-gray-400 <%= 'line-through' if b.cancelled_at? %>">
+                <% if b.cancelled_at? %>
+                  <span class="btn-sm bg-red-100 text-red-700 mr-2">Cancelled</span>
+                <% end %>
                 <strong><%= b.full_name.titleize %></strong> booked a visit for <strong><%= b.quantity %></strong> people at <%= b.updated_at.strftime("%H:%M on %d %b %G") %>.
               </p>
               <% if b.notes.present? %>

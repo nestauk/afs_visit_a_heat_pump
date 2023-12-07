@@ -1,0 +1,10 @@
+<h1>Booking cancelled</h1>
+
+<p>
+  <strong><%= @booking.full_name %></strong>
+  has cancelled their booking to attend your heat pump visit event on
+  <strong><%= @event.date.strftime("%A %d %b %G") %></strong>,
+  <strong><%= @event.start_at.strftime("%H:%M") %> - <%= @event.end_at.strftime("%H:%M") %></strong>.
+</p>
+
+<%= link_to 'Visit your dashboard', host_home_url, target: '_blank', rel: 'noopener', class: 'link' %> for more information.

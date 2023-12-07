@@ -29,7 +29,37 @@ class BookingsTest < ApplicationSystemTestCase
     assert_email_with_sleep @host.user.email, 'New booking - Visit a heat pump'
   end
 
-  # TODO: test 'visitor can cancel event'
+  test 'visitor cannot book event when capacity reached' do
+    @event.update(capacity: @event.active_bookings_count)
+    visit new_host_event_booking_path(@host, @event)
+    assert_current_path host_path(@host)
+    assert_text 'Event has no more places'
+  end
+
+  test 'visitor can cancel event' do
+    ActionMailer::Base.deliveries = []
+    token = bookings(:one).generate_token_for(:cancellation)
+    visit review_booking_cancellation_path(token)
+    accept_confirm { click_on 'Confirm cancellation' }
+    assert_current_path hosts_path
+    assert_text 'Booking cancelled - email confirmation has been sent'
+    assert_email bookings(:one).email, 'Booking cancelled - Visit a heat pump' # notify visitor
+    assert_email users(:one).email, 'Booking cancelled - Visit a heat pump' # notify host
+  end
+
+  test 'booking to cancel not found' do
+    visit review_booking_cancellation_path('missing')
+    assert_current_path hosts_path
+    assert_text 'Booking not found'
+  end
+
+  test 'booking already cancelled' do
+    token = bookings(:one).generate_token_for(:cancellation)
+    visit review_booking_cancellation_path(token)
+    accept_confirm { click_on 'Confirm cancellation' }
+    visit review_booking_cancellation_path(token)
+    assert_text 'Booking not found'
+  end
 
   def complete_booking_form
     fill_in 'First name', with: 'Visitor'

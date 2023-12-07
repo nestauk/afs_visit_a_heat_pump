@@ -7,6 +7,7 @@ class CreateBookings < ActiveRecord::Migration[7.0]
       t.string :email
       t.integer :quantity
       t.text :notes
+      t.datetime :cancelled_at
 
       t.timestamps
     end
