@@ -72,10 +72,10 @@ class HostsTest < ApplicationSystemTestCase
     fill_in 'First name', with: 'John'
     fill_in 'Last name', with: 'Doe'
     fill_in 'Email', with: 'john.doe@example.com'
-    fill_in :user_password, with: 'password123'
-    fill_in :user_password_confirmation, with: 'password123'
+    fill_in :user_password, with: 'Password123'
+    fill_in :user_password_confirmation, with: 'Password123'
     check :user_accepted_terms_at
-    click_button 'Sign up'
+    click_button 'Register'
   end
 
   def complete_host_form

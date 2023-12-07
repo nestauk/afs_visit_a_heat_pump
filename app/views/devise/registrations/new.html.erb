@@ -1,22 +1,24 @@
 <div class="flex items-center justify-center h-full">
 
   <div class="max-w-sm bg-gray-300 p-4 rounded shadow">
-  <h2>Sign up</h2>
+    <h2>Sign up</h2>
 
-  <%= simple_form_for resource, as: resource_name, url: registration_path(resource_name) do |f| %>
-    <div class="flex gap-2">
-      <%= f.input :first_name %>
-      <%= f.input :last_name %>
-    </div>
-    <%= f.input :email %>
-    <%= f.input :password, required: true, hint: "#{@minimum_password_length} characters minimum" %>
-    <%= f.input :password_confirmation, required: true %>
-    <%= f.input :accepted_terms_at, as: :boolean, label: false, inline_label: "I accept the #{link_to('terms of service', 'terms_path', target: '_blank', rel: 'noopener')} and #{link_to('privacy policy', 'privacy_path', target: '_blank', rel: 'noopener')}".html_safe %>
+    <%= simple_form_for resource, as: resource_name, url: registration_path(resource_name) do |f| %>
+      <div class="flex gap-2">
+        <%= f.input :first_name %>
+        <%= f.input :last_name %>
+      </div>
+      <%= f.input :email %>
+      <%= f.input :password, required: true, hint: "#{@minimum_password_length} characters minimum including uppercase and lowercase letters and numbers." %>
+      <%= f.input :password_confirmation, required: true %>
+      <div class="text-sm">
+        <%= f.input :accepted_terms_at, as: :boolean, label: false, inline_label: "I accept the #{link_to('terms of service', 'https://www.visitaheatpump.com/terms-of-use', class: 'link', target: '_blank', rel: 'noopener')} and #{link_to('privacy policy', 'https://www.visitaheatpump.com/privacy-policy', class: 'link', target: '_blank', rel: 'noopener')}".html_safe %>
+      </div>
 
-    <%= f.button :submit, "Sign up", class: 'btn bg-indigo-600 text-white my-2' %>
-  <% end %>
+      <%= f.button :submit, "Register", class: 'btn w-full bg-indigo-600 text-white my-2' %>
+    <% end %>
 
-  <%= render "devise/shared/links" %>
+    <%= render "devise/shared/links" %>
   </div>
 
 </div>

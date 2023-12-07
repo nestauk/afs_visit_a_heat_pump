@@ -5,7 +5,7 @@ class HostTest < ActiveSupport::TestCase
 
   test('has_one user') { assert_instance_of(User, @subject.user) }
 
-  test('has many events') { assert_equal(3, @subject.events.size) }
+  test('has_many events') { assert_equal(3, @subject.events.size) }
 
   test('street_address required') { assert_present(:street_address) }
 
