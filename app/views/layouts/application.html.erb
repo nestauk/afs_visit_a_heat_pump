@@ -48,9 +48,27 @@
       <%= yield %>
     </main>
 
-    <footer class="bg-gray-500 text-white">
+    <footer class="bg-gray-500 text-white text-sm">
       <div class="container mx-auto my-3 px-4">
-        Footer
+        <div class="flex flex-wrap pt-4">
+          <div class="w-full md:w-8/12 pr-0 md:pr-4 mb-4">
+            <dhttps: class="flex items-center mb-3">
+              <%= image_tag 'hp-icon-white.svg' %>
+              <h2 class="mb-0 ml-3">Visit a heat pump</h2>
+            </dhttps://assets-global.website-files.com/62ebb589227cd89080e017a5/6491cf20c28f07cb87a63376_Heat%20pump%20install_Outside%20Glasgow_Feb%202023_Nesta-27-p-800.jpgiv>
+            <p>
+              Visit a heat pump is a pilot service run by Nesta, the UK's innovation agency for social good. Nesta's sustainable future mission is working to accelerate the decarbonisation of household activities in the UK and improve levels of productivity. Our goal is that, by 2030, the UK will have reduced household carbon emissions by 28% from 2019 levels, and will be on track to reach zero by 2048.
+            </p>
+          </div>
+          <div class="w-full md:w-4/12 mb-4 border-l-none md:border-l border-white pl-0 md:pl-4">
+            <div class="flex flex-col gap-4">
+              <%= link_to 'About us', 'https://www.visitaheatpump.com/about', class: 'link', target: '_blank', rel: 'noopener' %>
+              <%= link_to 'Terms of use', 'https://www.visitaheatpump.com/terms-of-use', class: 'link', target: '_blank', rel: 'noopener' %>
+              <%= link_to 'Privacy policy', 'https://www.visitaheatpump.com/privacy-policy', class: 'link', target: '_blank', rel: 'noopener' %>
+              <a href="mailto:visitaheatpump@nesta.org.uk" class="link">visitaheatpump@nesta.org.uk</a>
+            </div>
+          </div>
+        </div>
       </div>
     </footer>
   </body>

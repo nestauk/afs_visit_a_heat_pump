@@ -25,7 +25,7 @@
           </summary>
           <div>
             <%- e.bookings.each do |b| %>
-              <p class="px-4 py-3 border-t border-gray-400 <%= 'line-through' if b.cancelled_at? %>">
+              <p class="px-4 py-3 border-t border-gray-300 <%= 'line-through' if b.cancelled_at? %>">
                 <% if b.cancelled_at? %>
                   <span class="btn-sm bg-red-100 text-red-700 mr-2">Cancelled</span>
                 <% end %>
