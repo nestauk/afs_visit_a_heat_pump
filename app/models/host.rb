@@ -9,6 +9,7 @@ class Host < ApplicationRecord
   has_one_attached :profile_picture # TODO: dependent destroy
 
   has_many :events, dependent: :destroy
+  has_many :followers, dependent: :destroy
 
   validates :street_address, :city, :postcode, :property_type, :hp_type,
             :profile_picture, :no_of_bedrooms, :hp_manufacturer,

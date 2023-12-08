@@ -10,8 +10,8 @@
 
 <section class="mt-4">
   <div class="flex flex-wrap">
-    <div class="w-full md:w-1/2 h-72">
-      <div class="bg-cover bg-center h-72" style="background-image: url(<%= url_for(@host.profile_picture) %>)"></div>
+    <div class="w-full md:w-1/2 min-h-fit">
+      <div class="bg-cover bg-center h-72 md:h-full" style="background-image: url(<%= url_for(@host.profile_picture) %>)"></div>
     </div>
 
     <div class="w-full md:w-1/2 p-8 bg-indigo-600 text-white">
@@ -55,10 +55,18 @@
     <% end %>
   <% else %>
     <div class="p-6 border border-gray-300">
-      <h2 class="text-gray-500">No upcoming events</h2>
-      <p class="my-3">Get notified about new events. You can unsubscribe at any time.</p>
-      <input type="text" placeholder="Your email" class="input string mb-4">
-      <input type="button" value="Join the waitlist" class="btn bg-indigo-600 text-white">
+      <% if notice == 'Now following host' %>
+        <h2 class="text-gray-500">Now following host</h2>
+        <p class="my-3">You'll recieve an email notification when new events are added. You can unsubscribe at any time.</p>
+      <% else %>
+        <h2 class="text-gray-500">No upcoming events</h2>
+        <p class="my-3">Get notified about new events. You can unsubscribe at any time.</p>
+        <%= simple_form_for @follower, url: follow_host_path(@host) do |f| %>
+          <%= f.input :email, label: false, placeholder: 'Your email', wrapper_html: { class: 'w-fit' } %>
+          <%= f.button :submit, 'Follow host', class: 'btn bg-indigo-600 text-white', data: { turbo_submits_with: 'Joining...' } %>
+        <% end %>
+      <% end %>
+
     </div>
   <% end %>
 </section>

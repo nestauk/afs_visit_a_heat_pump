@@ -14,7 +14,7 @@ class BookingTest < ActiveSupport::TestCase
   test 'email format' do
     @subject.email = 'notvalid.com'
     @subject.valid?
-    assert_error(:email, 'is invalid')
+    assert_error(:email, 'please provide a valid email address')
   end
 
   test('quantity required') { assert_present(:quantity) }

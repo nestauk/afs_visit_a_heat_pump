@@ -1,5 +1,5 @@
 class HostsController < ApplicationController
-  before_action :authenticate_user!, except: %i[ show ]
+  before_action :authenticate_user!, except: %i[ show follow unfollow ]
   before_action :set_host, only: %i[ show edit update ]
 
   def home
@@ -19,6 +19,19 @@ class HostsController < ApplicationController
 
   def show
     @events = @host.events.active
+    @follower = Follower.new
+  end
+
+  def follow
+    @host = Host.find_by(id: params[:id])
+    @events = @host.events.active
+    @follower = @host.followers.new(follower_params)
+
+    if @host.save # TODO: refactor
+      redirect_to host_path(@host), notice: 'Now following host'
+    else
+      render :show, status: :unprocessable_entity
+    end
   end
 
   def new
@@ -64,5 +77,9 @@ class HostsController < ApplicationController
         :profile_picture, :no_of_bedrooms, :useful_info, :hp_manufacturer,
         :hp_size, :hp_year_of_install, :upcoming_dates, :property_age
       )
+    end
+
+    def follower_params
+      params.require(:follower).permit(:email)
     end
 end

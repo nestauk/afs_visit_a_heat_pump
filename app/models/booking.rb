@@ -9,7 +9,10 @@ class Booking < ApplicationRecord
 
   validates :quantity, numericality: { greater_than: 0, less_than: 5 }
 
-  validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }
+  validates :email, format: {
+    with: URI::MailTo::EMAIL_REGEXP,
+    message: 'please provide a valid email address'
+  }
 
   validate :already_booked, on: :create
   validate :no_places_left

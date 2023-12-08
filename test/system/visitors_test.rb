@@ -37,4 +37,12 @@ class BookingsTest < ApplicationSystemTestCase
     click_on 'Filter'
     assert_link 'Book', count: 1
   end
+
+  test 'can follow host' do
+    visit host_path(hosts(:two))
+    fill_in :follower_email, with: 'follower@email.com'
+    click_on 'Follow host'
+    sleep 1
+    assert_equal 1, hosts(:two).followers.count
+  end
 end

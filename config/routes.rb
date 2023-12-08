@@ -11,6 +11,9 @@ Rails.application.routes.draw do
   get '/bookings/:token/cancel', to: 'bookings#review_cancellation', as: 'review_booking_cancellation'
   delete '/bookings/:token/cancel', to: 'bookings#confirm_cancellation', as: 'confirm_booking_cancellation'
 
+  post '/hosts/:id/follow', to: 'hosts#follow', as: 'follow_host'
+  # delete '/hosts/:id/unfollow/:token', to: 'hosts#unfollow', as: 'unfollow_host'
+
   # TODO: limit routes
   resources :hosts, except: :index do
     resources :events do

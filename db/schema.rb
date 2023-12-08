@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_12_01_115220) do
+ActiveRecord::Schema[7.1].define(version: 2023_12_08_150926) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -67,6 +67,14 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_01_115220) do
     t.index ["host_id"], name: "index_events_on_host_id"
   end
 
+  create_table "followers", force: :cascade do |t|
+    t.string "email"
+    t.bigint "host_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["host_id"], name: "index_followers_on_host_id"
+  end
+
   create_table "hosts", force: :cascade do |t|
     t.string "street_address"
     t.string "city"
@@ -107,4 +115,5 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_01_115220) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "bookings", "events"
   add_foreign_key "events", "hosts"
+  add_foreign_key "followers", "hosts"
 end
