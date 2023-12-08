@@ -1,5 +1,5 @@
 namespace :scheduler do
-  desc 'send notifications'
+  desc 'Send reminder emails when events in 3 days, usage: `rake scheduler:notify`'
   task notify: :environment do
 
     Event.in_3_days.each do |event|
