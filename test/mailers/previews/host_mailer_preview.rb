@@ -14,4 +14,8 @@ class HostMailerPreview < ActionMailer::Preview
   def booking_cancelled
     HostMailer.booking_cancelled(@event, @booking).deliver_now
   end
+
+  def event_upcoming
+    HostMailer.event_upcoming(@event).deliver_now
+  end
 end

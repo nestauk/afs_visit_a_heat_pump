@@ -1,6 +1,6 @@
 one:
   host: one
-  date: <%= Date.today %>
+  date: <%= 3.days.from_now %>
   start_at: <%= Time.now %>
   end_at: <%= 2.hours.from_now %>
   capacity: 10

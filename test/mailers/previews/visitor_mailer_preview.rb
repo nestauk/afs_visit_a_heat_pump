@@ -22,4 +22,8 @@ class VisitorMailerPreview < ActionMailer::Preview
   def event_cancelled
     VisitorMailer.event_cancelled(@event, @booking).deliver_now
   end
+
+  def event_upcoming
+    VisitorMailer.event_upcoming(@event, @booking).deliver_now
+  end
 end

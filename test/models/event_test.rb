@@ -15,6 +15,16 @@ class EventTest < ActiveSupport::TestCase
     assert_equal 1, Event.cancelled.count
   end
 
+  test 'in_3_days scope returns events in 3 days time' do
+    assert_equal 1, Event.in_3_days.count # 3 days from now
+
+    @subject.update(date: 4.days.from_now)
+    assert_equal 0, Event.in_3_days.count
+
+    @subject.update(date: 2.days.from_now)
+    assert_equal 0, Event.in_3_days.count
+  end
+
   test('belongs to host') { assert_instance_of(Host, @subject.host) }
 
   test('has many bookings') { assert_equal(2, @subject.bookings.size) }

@@ -1,7 +1,7 @@
-<h1>Booking confirmed</h1>
-
-<p>Your booking to visit a heat pump has been made.</p>
-
+<h1>Upcoming visit</h1>
+<p>
+  Your heat pump visit is soon. Cancel your booking if you can't make it, and find an alternative <%= link_to 'here', hosts_url, class: 'link', target: '_blank', rel: 'noopener' %>.
+</p>
 <h2>Event details</h2>
 <p>
   <strong>Host:</strong> <%= link_to @event.host.display_name, host_url(@event.host), target: '_blank', rel: 'noopener', class: 'link text-indigo-600' %>
@@ -15,5 +15,6 @@
 <p>
   <strong>Time:</strong> <%= @event.start_at.strftime("%H:%M") %> - <%= @event.end_at.strftime("%H:%M") %>
 </p>
-
-<%= link_to 'Cancel booking', review_booking_cancellation_url(@token), target: '_blank', rel: 'noopener', class: 'btn' %>
+<p>
+  <%= link_to 'Cancel booking', review_booking_cancellation_url(@token), target: '_blank', rel: 'noopener', class: 'btn' %>
+</p>

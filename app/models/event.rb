@@ -2,6 +2,7 @@ class Event < ApplicationRecord
   scope :active, -> { where('cancelled_at IS NULL AND date >= ?', Date.today).order(:date) }
   scope :past, -> { where('cancelled_at IS NULL AND date < ?', Date.today).order(:date) }
   scope :cancelled, -> { where('cancelled_at IS NOT NULL').order(:date) }
+  scope :in_3_days, -> { active.where(date: Date.today + 3) }
 
   belongs_to :host
 

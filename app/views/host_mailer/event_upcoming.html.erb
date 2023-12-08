@@ -1,0 +1,19 @@
+<h1>Upcoming event</h1>
+<p>
+  Your heat pump visit event is soon.
+  <strong><%= @event.active_bookings_count %></strong>
+  of
+  <strong><%= @event.capacity %></strong>
+  places taken.
+</p>
+<h2>Event details</h2>
+<p>
+  <strong>Date:</strong> <%= @event.date.strftime("%A %d %b %G") %>
+</p>
+<p>
+  <strong>Time:</strong> <%= @event.start_at.strftime("%H:%M") %> - <%= @event.end_at.strftime("%H:%M") %>
+</p>
+<p>
+  <%= link_to 'Visit your dashboard', host_home_url, target: '_blank', rel: 'noopener', class: 'link' %>
+  for more details.
+</p>

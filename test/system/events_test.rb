@@ -40,7 +40,7 @@ class EventsTest < ApplicationSystemTestCase
     click_on 'Edit'
     accept_confirm { click_on 'cancel the event' }
     click_on 'Cancelled events'
-    assert_text event.date.strftime("%A %d %b %G"), count: 2
+    assert_text 'places taken', count: 2
     assert_no_link edit_host_event_path(@host, event)
   end
 
