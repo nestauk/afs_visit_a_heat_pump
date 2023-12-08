@@ -18,6 +18,9 @@
     <%= js_map @hosts, height: "300px" %>
   </div>
   <div class="w-full lg:w-2/3 pl-0 lg:pl-5">
+    <div class="mb-4 text-gray-600">
+      <%= page_entries_info @hosts %>
+    </div>
     <%- @hosts.each do |h| %>
       <div class="flex flex-wrap p-4 border border-gray-300 mb-6">
         <div class="w-full lg:w-1/3 mb-4 lg:mb-0">
