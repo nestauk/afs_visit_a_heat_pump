@@ -145,6 +145,18 @@ GEM
     jbuilder (2.11.5)
       actionview (>= 5.0.0)
       activesupport (>= 5.0.0)
+    kaminari (1.2.2)
+      activesupport (>= 4.1.0)
+      kaminari-actionview (= 1.2.2)
+      kaminari-activerecord (= 1.2.2)
+      kaminari-core (= 1.2.2)
+    kaminari-actionview (1.2.2)
+      actionview
+      kaminari-core (= 1.2.2)
+    kaminari-activerecord (1.2.2)
+      activerecord
+      kaminari-core (= 1.2.2)
+    kaminari-core (1.2.2)
     listen (3.8.0)
       rb-fsevent (~> 0.10, >= 0.10.3)
       rb-inotify (~> 0.9, >= 0.9.10)
@@ -229,6 +241,10 @@ GEM
       thor (~> 1.0, >= 1.2.2)
       zeitwerk (~> 2.6)
     rake (13.1.0)
+    ransack (4.1.1)
+      activerecord (>= 6.1.5)
+      activesupport (>= 6.1.5)
+      i18n
     rb-fsevent (0.11.2)
     rb-inotify (0.10.1)
       ffi (~> 1.0)
@@ -319,11 +335,13 @@ DEPENDENCIES
   hotwire-livereload (~> 1.2)
   importmap-rails
   jbuilder
+  kaminari (~> 1.2)
   mapkick-rb (~> 0.1.5)
   mocha (~> 2.1)
   pg (~> 1.1)
   puma (~> 5.0)
   rails (~> 7.1.2)
+  ransack (~> 4.1)
   redis (~> 4.0)
   rexml (~> 3.2)
   roadie-rails (~> 3.1)

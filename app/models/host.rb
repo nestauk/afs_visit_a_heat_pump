@@ -20,6 +20,10 @@ class Host < ApplicationRecord
   validates :property_age, inclusion: { in: PROPERTY_AGES }
   validates :hp_type, inclusion: { in: HP_TYPES }
 
+  def self.ransackable_attributes(auth_object = nil)
+    %w[ hp_type postcode property_type ]
+  end
+
   def address
     "#{street_address}, #{city}, #{postcode}"
   end

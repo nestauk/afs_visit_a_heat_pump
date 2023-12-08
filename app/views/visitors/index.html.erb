@@ -1,30 +1,54 @@
-<div class="max-w-screen-md mx-auto">
-  <h1>Visit a heat pump near <%= params[:postcode]&.upcase || 'you' %></h1>
+<section class="mt-4 mb-6">
+  <%= search_form_for @q do |f| %>
+    <div class="md:flex gap-2">
+      <%= f.search_field :postcode, value: @postcode, class: 'input string mb-2', placeholder: 'Postcode' %>
+      <%= f.collection_select :hp_type_in, Host::HP_TYPES, :to_s, :to_s, { prompt: '(Heat pump type)' }, class: 'input select mb-2' %>
+      <%= f.collection_select :property_type_in, Host::PROPERTY_TYPES, :to_s, :to_s, { prompt: '(Property type)' }, class: 'input select mb-2' %>
 
-  <%= js_map @hosts %>
+      <div class="flex gap-2">
+        <%= f.button 'Filter', type: 'submit', class: 'btn bg-indigo-600 text-white mb-2 grow' %>
+        <%= link_to 'Reset', hosts_path, class: 'btn bg-indigo-100 text-indigo-900 mb-2 grow' %>
+      </div>
+    </div>
+  <% end %>
+</section>
 
-  <section class="mt-8">
+<div class="flex flex-wrap">
+  <div class="w-full lg:w-1/3 pr-0 lg:pr-5 mb-6">
+    <%= js_map @hosts, height: "300px" %>
+  </div>
+  <div class="w-full lg:w-2/3 pl-0 lg:pl-5">
     <%- @hosts.each do |h| %>
-      <div class="flex items-center py-3 border-t border-gray-400">
-        <div class="grow">
-          <h2 class="mb-1"><%= h.display_name %></h2>
-
-          <p class="mb-1"><%= h.subtitle %></p>
-
-          <p class="mb-1">
+      <div class="flex flex-wrap p-4 border border-gray-300 mb-6">
+        <div class="w-full lg:w-1/3 mb-4 lg:mb-0">
+          <div class="bg-cover bg-center h-48" style="background-image: url(<%= url_for(h.profile_picture) %>)"></div>
+        </div>
+        <div class="w-full lg:w-2/3 pl-0 lg:pl-5">
+          <h2 class="text-xl mb-2"><%= h.display_name %></h2>
+          <p class="mb-2 text-lg"><%= h.subtitle %></p>
+          <p class="mb-4 text-gray-600 flex items-center">
+            <%= image_tag 'location-pin-icon-gray-600.svg', alt: 'Gray location pin icon', width: 30, height: 30 %>
             <%= h.city %>
-            <%- if params[:postcode] %>
-              <span class="text-sm">
+            <%- if @postcode.present? %>
+              <span class="text-sm ml-2">
                 <%# TODO: cache %>
-                (<%= h.distance_from(params[:postcode]).round(1) %> miles away)
+                (<%= h.distance_from(@postcode).round(1) %> miles away)
               </span>
             <% end %>
           </p>
-
-          <p class="text-sm"><%= pluralize(h.events.active.count, 'upcoming event') %></p>
+          <div class="flex items-center justify-between">
+            <span class="flex items-center">
+              <%= image_tag 'calendar-icon-indigo-600.svg', alt: 'Grey calendar icon', width: 30, height: 30 %>
+              <p class="text-indigo-600 ml-2"><%= pluralize(h.events.active.count, 'upcoming event') %></p>
+            </span>
+            <%= link_to 'Book', h, class: 'btn bg-indigo-600 text-white shrink-0 ml-3' %>
+          </div>
         </div>
-        <%= link_to 'View', h, class: 'btn bg-indigo-600 text-white shrink-0 ml-3' %>
       </div>
     <% end %>
-  </section>
+
+    <div class="text-center mb-2">
+      <%= paginate @hosts %>
+    </div>
+  </div>
 </div>
