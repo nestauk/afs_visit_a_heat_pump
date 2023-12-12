@@ -67,6 +67,12 @@ class HostsTest < ApplicationSystemTestCase
     assert_text 'Host not found'
   end
 
+  test 'public profile not published' do
+    @host.update(published: false)
+    visit host_path(@host)
+    assert_text 'Host not found'
+  end
+
   def complete_sign_up_form
     visit new_user_registration_path
     fill_in 'First name', with: 'John'

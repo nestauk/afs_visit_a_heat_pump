@@ -3,6 +3,11 @@ require "test_helper"
 class HostTest < ActiveSupport::TestCase
   setup { @subject = hosts(:one) }
 
+  test 'published scope returns published hosts' do
+    @subject.update(published: false)
+    assert_equal 1, Host.published.count
+  end
+
   test('has_one user') { assert_instance_of(User, @subject.user) }
 
   test('has_many events') { assert_equal(3, @subject.events.size) }

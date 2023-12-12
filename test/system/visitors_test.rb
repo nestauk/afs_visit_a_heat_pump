@@ -6,6 +6,12 @@ class BookingsTest < ApplicationSystemTestCase
     visit hosts_path
   end
 
+  test 'list only published hosts' do
+    @host.update(published: false)
+    visit hosts_path
+    assert_link 'View', count: 1
+  end
+
   test 'no postcode' do
     assert_link 'View', count: 2
   end
