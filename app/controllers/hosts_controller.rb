@@ -18,6 +18,7 @@ class HostsController < ApplicationController
   end
 
   def show
+    return redirect_back fallback_location: hosts_path, alert: 'Host not found' unless current_user&.host == @host || @host.published
     @events = @host.events.active
     @follower = Follower.new
   end
@@ -64,7 +65,7 @@ class HostsController < ApplicationController
 
   private
     def set_host
-      @host = Host.published.find_by(id: params[:id])
+      @host = Host.find_by(id: params[:id])
       return redirect_back fallback_location: hosts_path, alert: 'Host not found' unless @host
       unless action_name == 'show'
         return redirect_to host_home_path, alert: 'Access denied' if @host != current_user.host
