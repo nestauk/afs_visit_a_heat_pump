@@ -32,8 +32,8 @@
   </section>
 
   <section class="py-6 border-t border-indigo-600">
-    <div class="flex items-start mb-5">
-      <%= image_tag 'hp-icon-white.svg', alt: 'Indigo outline of heat pump icon' %>
+    <div class="flex items-baseline mb-5">
+      <%= image_tag 'hp-icon-indigo-600.svg', width: 40, alt: 'Indigo outline of heat pump icon' %>
       <h2 class="ml-3 text-3xl text-indigo-600">About your heat pump</h2>
     </div>
     <%= f.input :hp_type, as: :select, collection: Host::HP_TYPES %>
