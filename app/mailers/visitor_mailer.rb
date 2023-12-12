@@ -17,6 +17,7 @@ class VisitorMailer < ApplicationMailer
   def event_updated(event, booking)
     @event = event
     @booking = booking
+    @token = @booking.generate_token_for(:cancellation)
     mail(to: @booking.email, subject: 'Event updated - Visit a heat pump')
   end
 

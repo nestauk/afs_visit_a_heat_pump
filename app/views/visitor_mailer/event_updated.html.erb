@@ -15,3 +15,6 @@
 <p>
   <strong>Time:</strong> <%= @event.start_at.strftime("%H:%M") %> - <%= @event.end_at.strftime("%H:%M") %>
 </p>
+<p>
+  <%= link_to 'Cancel booking', review_booking_cancellation_url(@token), target: '_blank', rel: 'noopener', class: 'btn' %>
+</p>
