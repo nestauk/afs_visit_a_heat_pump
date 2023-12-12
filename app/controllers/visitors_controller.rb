@@ -4,7 +4,7 @@ class VisitorsController < ApplicationController
 
     if @postcode.present?
       begin
-        hosts_by_distance = Host.by_distance(origin: @postcode).all
+        hosts_by_distance = Host.published.by_distance(origin: @postcode).all
       rescue => err
         msg = "Could not find postcode #{@postcode}"
         @postcode = nil
@@ -14,7 +14,7 @@ class VisitorsController < ApplicationController
       @q = hosts_by_distance.ransack(params[:q])
       @hosts = @q.result.page(params[:page])
     else
-      @q = Host.ransack(params[:q])
+      @q = Host.published.ransack(params[:q])
       @hosts = @q.result(distinct: true).page(params[:page])
     end
   end

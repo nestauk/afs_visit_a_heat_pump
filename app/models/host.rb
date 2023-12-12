@@ -1,4 +1,6 @@
 class Host < ApplicationRecord
+  scope :published, -> { where(published: true) }
+
   PROPERTY_TYPES = [ 'Detached property', 'Semi-detached property', 'Terrace property', 'Bungalow', 'Flat/masionette', 'Other' ].freeze
   PROPERTY_AGES = [ 'Pre 1920', '1920 - 1944', '1945 - 1964', '1965 - 1982', '1983 - 2002', 'Post 2003' ].freeze
   HP_TYPES = [ 'Air source', 'Ground source', 'Other' ].freeze
