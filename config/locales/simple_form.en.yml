@@ -19,6 +19,8 @@ en:
         hp_manufacturer: "Manufacturer"
         hp_size: "Heat pump size in kW (optional)"
         hp_year_of_install: "Year of installation"
+        description: "Describe your heating system (optional)"
+        profile_picture: "Photo of your home or heat pump"
       event:
         start_at: "Start time"
         end_at: "End time"
@@ -27,7 +29,8 @@ en:
         quantity: "How many visitors will there be?"
     hints:
       host:
-        profile_picture: "Improve your profile by adding a photo."
+        description: "Add more information about your home, heating system and energy saving measures to share with visitors."
+        profile_picture: "This photo will be displayed on your public profile and be uploaded when you click Save."
       event:
         capacity: "This is the total number of people who can attend your event."
       booking:

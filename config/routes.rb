@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  authenticate :user, ->(user) { user.admin? } do
+    mount Blazer::Engine, at: "admin"
+  end
+
   devise_for :users
 
   root "visitors#index"

@@ -13,3 +13,12 @@ two:
   encrypted_password: <%= User.new.send(:password_digest, 'Password123') %>
   accepted_terms_at: <%= Time.now %>
   host: two
+
+admin:
+  first_name: User
+  last_name: Two
+  email: admin.user@email.com
+  encrypted_password: <%= User.new.send(:password_digest, 'Password123') %>
+  accepted_terms_at: <%= Time.now %>
+  host: two
+  admin: true
