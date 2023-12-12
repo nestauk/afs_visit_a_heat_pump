@@ -8,6 +8,8 @@ class Host < ApplicationRecord
   has_one :user
   has_one_attached :profile_picture # TODO: dependent destroy
 
+  has_rich_text :description
+
   has_many :events, dependent: :destroy
   has_many :followers, dependent: :destroy
 

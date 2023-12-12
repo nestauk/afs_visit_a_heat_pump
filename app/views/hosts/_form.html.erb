@@ -27,6 +27,8 @@
         <%= image_tag host.profile_picture, alt: 'Host profile pictire', width: 250 %>
       </div>
     <% end %>
+
+    <%= f.input :description, as: :rich_text_area %>
   </section>
 
   <section class="py-6 border-t border-indigo-600">
