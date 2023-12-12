@@ -73,6 +73,14 @@ class HostsTest < ApplicationSystemTestCase
     assert_text 'Host not found'
   end
 
+  test 'can view unpublished public profile when signed in' do
+    @host.update(published: false)
+    sign_in
+    sleep 1
+    visit host_path(@host)
+    assert_current_path host_path(@host)
+  end
+
   def complete_sign_up_form
     visit new_user_registration_path
     fill_in 'First name', with: 'John'
