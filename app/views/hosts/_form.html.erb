@@ -21,9 +21,9 @@
     <%= f.input :upcoming_dates %>
 
     <%= f.input :profile_picture, as: :file, input_html: { accept: 'image/*', class: 'mt-2' } %>
-    <% if host.profile_picture.attached? && host.profile_picture.persisted?%>
+    <% if host.profile_picture.attached? && host.profile_picture.persisted? %>
       <div class="mb-4">
-        <em class="text-sm"><%= host.profile_picture.blob.filename %></em>
+        <em class="text-sm">Current: <%= host.profile_picture.blob.filename %> - select a new file above to change.</em>
         <%= image_tag host.profile_picture, alt: 'Host profile pictire', width: 250 %>
       </div>
     <% end %>
